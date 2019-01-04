@@ -353,6 +353,7 @@
                 <li data-reactid="334"></li>
               </ol>
               <div class="carousel-inner" data-reactid="336">
+                  {{range $i,$v := .lBanner}}
                 <div class="item active" data-reactid="337">
                   <a href="https://www.vcg.com/group/506059963" target="_blank" data-reactid="338">
                     <img class="banner" style="width:auto;height:430px;" src="//goss1.vcg.com/editorial/vcg/nowarter800/new/VCG111183492959.jpg"
@@ -364,6 +365,8 @@
 										</span>
                   </div>
                 </div>
+                  {{end}}
+
                 <div class="item" data-reactid="342">
                   <a href="https://www.vcg.com/group/506060342" target="_blank" data-reactid="343">
                     <img class="banner" style="width:auto;height:430px;" src="//goss3.vcg.com/editorial/vcg/nowarter800/new/VCG111183512765.jpg"
@@ -460,38 +463,13 @@
           </div>
 
           <div class="editor-showlist pull-left" data-reactid="383">
-            <div class="img-list pull-left" data-reactid="384">
-              <a href="https://www.vcg.com/topic/100634" target="_blank" data-reactid="385">
-                <div style="background-image:url(//goss4.vcg.com/cms/image/image/1552eb5ae6444f469ea5fc968e8934b6.jpg);min-height:208px;max-height:208px;background-size:cover;background-repeat:no-repeat;background-position:center;"
-                     data-reactid="386">
-                </div>
+              {{range $i,$v :=.rBanner}}
+               <div class="img-list pull-left" data-reactid="384">
+              <a href="{{$v.href}}" target="_blank">
+                <div style="background-image:url({{$v.imgUrl}});min-height:208px;max-height:208px;background-size:cover;background-repeat:no-repeat;background-position:center;"></div>
               </a>
             </div>
-
-            <div class="img-list pull-left" data-reactid="387">
-              <a href="https://www.vcg.com/topic/101220" target="_blank" data-reactid="388">
-                <div style="background-image:url(//goss2.vcg.com/cms/image/image/c57fa9cbe79b486f9b28b22108ba331d.jpg);min-height:208px;max-height:208px;background-size:cover;background-repeat:no-repeat;background-position:center;"
-                     data-reactid="389">
-                </div>
-              </a>
-            </div>
-
-            <div class="img-list pull-left" data-reactid="390">
-              <a href="https://www.vcg.com/topic/100487" target="_blank" data-reactid="391">
-                <div style="background-image:url(//goss4.vcg.com/cms/image/image/e475084b4ef14cd794d466d820cecb16.jpg);min-height:208px;max-height:208px;background-size:cover;background-repeat:no-repeat;background-position:center;"
-                     data-reactid="392">
-                </div>
-              </a>
-            </div>
-
-            <div class="img-list pull-left" data-reactid="393">
-              <a href="https://www.vcg.com/topic/101249" target="_blank" data-reactid="394">
-                <div style="background-image:url(//goss.vcg.com/cms/image/image/bee57fbdf9184c64a5d611e81741050c.jpg);min-height:208px;max-height:208px;background-size:cover;background-repeat:no-repeat;background-position:center;"
-                     data-reactid="395">
-                </div>
-              </a>
-            </div>
-
+              {{end}}
           </div>
         </div>
 
