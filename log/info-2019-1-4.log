@@ -1,0 +1,173 @@
+info2019/01/04 02:36:44 server.go:38: SELECT COUNT(1) AS c  FROM visual_editorial_group
+info2019/01/04 02:36:44 server.go:59: map[c:616]
+info2019/01/04 02:36:44 server.go:64: SELECT g.group_id,title,img_date,g.group_pics_num,detail.equalw_url,detail.equalw_image_id,detail.equalh_url,detail.equalh_image_id,detail.url800,detail.url800_image_id from visual_editorial_group as g inner JOIN visual_editorial_group_detail as detail  on g.group_id = detail.group_id   ORDER BY img_date DESC LIMIT 0,100
+info2019/01/04 02:36:44 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id in(7600,7650,7674,7731,7851,7863,7594,7683,7695,7710,7806,7869,7875,7603,7677,7707,7734,7743,7758,7797,7665,7689,7704,7809,7824,7857,7591,7636,7638,7767,7785,7821,7866,7716,7725,7728,7740,7779,7794,7899,7656,7668,7746,7791,7803,7827,7860,7612,7630,7633,7641,7761,7842,7653,7662,7773,7776,7830,7881,7884,7606,7618,7770,7782,7815,7833,7878,7854,7644,7647,7692,7752,7764,7800,7845,7621,7624,7722,7737,7609,7680,7812,7839,7615,7627,7686,7698,7719,7749,7755,7597,7701,7788,7818,7836,7659,7671,7713,7872) LIMIT 0,100
+info2019/01/04 02:36:44 server.go:64: SELECT id,type,text,origin_imgurl,img_id,link_id,img_width,recommend_type FROM visual_editorial_banner ORDER BY id DESC,img_width ASC LIMIT 0,12
+info2019/01/04 02:36:44 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=527 LIMIT 0,1
+info2019/01/04 02:36:44 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=537 LIMIT 0,1
+info2019/01/04 02:36:44 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=536 LIMIT 0,1
+info2019/01/04 02:36:44 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=534 LIMIT 0,1
+info2019/01/04 02:36:44 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=533 LIMIT 0,1
+info2019/01/04 02:36:44 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=530 LIMIT 0,1
+info2019/01/04 02:36:44 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=528 LIMIT 0,1
+info2019/01/04 02:36:44 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=538 LIMIT 0,1
+info2019/01/04 02:36:44 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=535 LIMIT 0,1
+info2019/01/04 02:36:44 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=532 LIMIT 0,1
+info2019/01/04 02:36:44 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=531 LIMIT 0,1
+info2019/01/04 02:36:44 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=529 LIMIT 0,1
+info2019/01/04 02:39:04 server.go:38: SELECT COUNT(1) AS c  FROM visual_editorial_group
+info2019/01/04 02:39:04 server.go:59: map[c:616]
+info2019/01/04 02:39:04 server.go:64: SELECT g.group_id,title,img_date,g.group_pics_num,detail.equalw_url,detail.equalw_image_id,detail.equalh_url,detail.equalh_image_id,detail.url800,detail.url800_image_id from visual_editorial_group as g inner JOIN visual_editorial_group_detail as detail  on g.group_id = detail.group_id   ORDER BY img_date DESC LIMIT 0,100
+info2019/01/04 02:39:05 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id in(7725,7851,7899,7621,7636,7695,7716,7713,7752,7758,7776,7606,7633,7680,7692,7881,7740,7788,7803,7809,7594,7618,7701,7737,7815,7830,7833,7884,7779,7812,7827,7845,7591,7674,7704,7722,7866,7839,7641,7644,7731,7755,7773,7836,7597,7665,7671,7770,7854,7662,7686,7719,7818,7806,7869,7878,7698,7734,7749,7761,7842,7627,7653,7683,7797,7677,7707,7764,7767,7603,7612,7638,7650,7860,7875,7872,7624,7746,7791,7689,7659,7800,7863,7785,7600,7615,7647,7782,7857,7728,7743,7794,7821,7710,7824,7609,7630,7656,7668) LIMIT 0,100
+info2019/01/04 02:39:05 server.go:64: SELECT id,type,text,origin_imgurl,img_id,link_id,img_width,recommend_type FROM visual_editorial_banner ORDER BY id DESC,img_width ASC LIMIT 0,12
+info2019/01/04 02:39:05 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=536 LIMIT 0,1
+info2019/01/04 02:39:05 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=535 LIMIT 0,1
+info2019/01/04 02:39:05 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=534 LIMIT 0,1
+info2019/01/04 02:39:05 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=533 LIMIT 0,1
+info2019/01/04 02:39:05 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=531 LIMIT 0,1
+info2019/01/04 02:39:05 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=528 LIMIT 0,1
+info2019/01/04 02:39:05 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=527 LIMIT 0,1
+info2019/01/04 02:39:05 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=538 LIMIT 0,1
+info2019/01/04 02:39:05 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=537 LIMIT 0,1
+info2019/01/04 02:39:05 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=532 LIMIT 0,1
+info2019/01/04 02:39:05 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=530 LIMIT 0,1
+info2019/01/04 02:39:05 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=529 LIMIT 0,1
+info2019/01/04 03:02:19 server.go:38: SELECT COUNT(1) AS c  FROM visual_editorial_group
+info2019/01/04 03:02:20 server.go:59: map[c:616]
+info2019/01/04 03:02:20 server.go:64: SELECT g.group_id,title,img_date,g.group_pics_num,detail.equalw_url,detail.equalw_image_id,detail.equalh_url,detail.equalh_image_id,detail.url800,detail.url800_image_id from visual_editorial_group as g inner JOIN visual_editorial_group_detail as detail  on g.group_id = detail.group_id   ORDER BY img_date DESC LIMIT 0,100
+info2019/01/04 03:02:20 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id in(7647,7812,7821,7854,7872,7701,7710,7746,7606,7644,7674,7698,7833,7857,7656,7683,7740,7800,7830,7597,7680,7743,7770,7794,7827,7881,7899,7662,7713,7749,7803,7824,7591,7618,7773,7776,7722,7845,7615,7633,7704,7716,7791,7627,7641,7671,7692,7695,7809,7875,7836,7621,7638,7707,7728,7782,7797,7806,7869,7594,7600,7653,7737,7758,7839,7860,7624,7636,7665,7719,7815,7752,7767,7785,7603,7650,7689,7725,7731,7630,7668,7779,7878,7884,7788,7842,7851,7609,7612,7734,7761,7764,7863,7866,7659,7677,7686,7755,7818) LIMIT 0,100
+info2019/01/04 03:02:20 server.go:64: SELECT id,type,text,origin_imgurl,img_id,link_id,img_width,recommend_type FROM visual_editorial_banner ORDER BY id DESC,img_width ASC LIMIT 0,12
+info2019/01/04 03:02:20 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=538 LIMIT 0,1
+info2019/01/04 03:02:20 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=536 LIMIT 0,1
+info2019/01/04 03:02:20 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=530 LIMIT 0,1
+info2019/01/04 03:02:20 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=528 LIMIT 0,1
+info2019/01/04 03:02:20 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=527 LIMIT 0,1
+info2019/01/04 03:02:20 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=537 LIMIT 0,1
+info2019/01/04 03:02:20 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=535 LIMIT 0,1
+info2019/01/04 03:02:20 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=534 LIMIT 0,1
+info2019/01/04 03:02:20 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=533 LIMIT 0,1
+info2019/01/04 03:02:20 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=532 LIMIT 0,1
+info2019/01/04 03:02:20 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=531 LIMIT 0,1
+info2019/01/04 03:02:20 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=529 LIMIT 0,1
+info2019/01/04 03:02:49 server.go:38: SELECT COUNT(1) AS c  FROM visual_editorial_group
+info2019/01/04 03:02:49 server.go:59: map[c:616]
+info2019/01/04 03:02:49 server.go:64: SELECT g.group_id,title,img_date,g.group_pics_num,detail.equalw_url,detail.equalw_image_id,detail.equalh_url,detail.equalh_image_id,detail.url800,detail.url800_image_id from visual_editorial_group as g inner JOIN visual_editorial_group_detail as detail  on g.group_id = detail.group_id   ORDER BY img_date DESC LIMIT 0,100
+info2019/01/04 03:02:49 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id in(7824,7866,7609,7701,7713,7758,7785,7803,7815,7827,7692,7695,7653,7665,7683,7698,7734,7737,7594,7647,7773,7842,7707,7743,7809,7606,7621,7662,7812,7830,7899,7650,7659,7794,7836,7881,7746,7749,7710,7716,7884,7638,7677,7752,7770,7776,7782,7833,7600,7618,7641,7680,7731,7818,7851,7878,7603,7633,7725,7761,7854,7869,7627,7722,7674,7689,7872,7644,7671,7656,7719,7755,7767,7797,7839,7612,7630,7704,7740,7779,7800,7821,7636,7788,7845,7860,7863,7875,7615,7728,7764,7806,7668,7686,7624,7791,7857,7591,7597) LIMIT 0,100
+info2019/01/04 03:02:49 server.go:64: SELECT id,type,text,origin_imgurl,img_id,link_id,img_width,recommend_type FROM visual_editorial_banner ORDER BY id DESC,img_width ASC LIMIT 0,12
+info2019/01/04 03:03:13 server.go:38: SELECT COUNT(1) AS c  FROM visual_editorial_group
+info2019/01/04 03:03:13 server.go:59: map[c:616]
+info2019/01/04 03:03:13 server.go:64: SELECT g.group_id,title,img_date,g.group_pics_num,detail.equalw_url,detail.equalw_image_id,detail.equalh_url,detail.equalh_image_id,detail.url800,detail.url800_image_id from visual_editorial_group as g inner JOIN visual_editorial_group_detail as detail  on g.group_id = detail.group_id   ORDER BY img_date DESC LIMIT 0,100
+info2019/01/04 03:03:13 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id in(7671,7698,7743,7863,7878,7609,7668,7794,7818,7728,7737,7767,7827,7830,7860,7633,7644,7707,7782,7869,7692,7749,7785,7815,7833,7881,7630,7647,7662,7704,7773,7776,7899,7872,7884,7636,7701,7731,7740,7788,7854,7842,7603,7653,7710,7716,7779,7800,7695,7761,7615,7624,7627,7638,7659,7686,7764,7594,7725,7734,7770,7857,7591,7597,7680,7806,7866,7755,7812,7618,7641,7650,7674,7719,7722,7824,7606,7689,7836,7845,7791,7803,7600,7612,7665,7713,7752,7758,7839,7875,7621,7656,7677,7683,7746,7797,7809,7821,7851) LIMIT 0,100
+info2019/01/04 03:03:13 server.go:64: SELECT id,type,text,origin_imgurl,img_id,link_id,img_width,recommend_type FROM visual_editorial_banner ORDER BY id DESC,img_width ASC LIMIT 0,12
+info2019/01/04 03:03:16 server.go:38: SELECT COUNT(1) AS c  FROM visual_editorial_group
+info2019/01/04 03:03:16 server.go:59: map[c:616]
+info2019/01/04 03:03:16 server.go:64: SELECT g.group_id,title,img_date,g.group_pics_num,detail.equalw_url,detail.equalw_image_id,detail.equalh_url,detail.equalh_image_id,detail.url800,detail.url800_image_id from visual_editorial_group as g inner JOIN visual_editorial_group_detail as detail  on g.group_id = detail.group_id   ORDER BY img_date DESC LIMIT 0,100
+info2019/01/04 03:03:16 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id in(7683,7692,7698,7719,7737,7791,7875,7821,7600,7701,7734,7761,7770,7776,7788,7857,7878,7884,7621,7659,7662,7707,7755,7872,7827,7839,7630,7665,7716,7809,7815,7836,7638,7674,7704,7746,7764,7863,7612,7650,7728,7758,7782,7785,7803,7869,7899,7779,7627,7644,7647,7677,7731,7749,7767,7800,7842,7881,7594,7606,7794,7806,7818,7812,7591,7624,7636,7641,7713,7722,7797,7860,7743,7854,7866,7615,7653,7710,7824,7830,7597,7609,7656,7686,7740,7680,7752,7773,7603,7618,7689,7695,7845,7851,7633,7668,7671,7725,7833) LIMIT 0,100
+info2019/01/04 03:03:16 server.go:64: SELECT id,type,text,origin_imgurl,img_id,link_id,img_width,recommend_type FROM visual_editorial_banner ORDER BY id DESC,img_width ASC LIMIT 0,12
+info2019/01/04 03:11:52 server.go:38: SELECT COUNT(1) AS c  FROM visual_editorial_group
+info2019/01/04 03:11:52 server.go:59: map[c:616]
+info2019/01/04 03:11:52 server.go:64: SELECT g.group_id,title,img_date,g.group_pics_num,detail.equalw_url,detail.equalw_image_id,detail.equalh_url,detail.equalh_image_id,detail.url800,detail.url800_image_id from visual_editorial_group as g inner JOIN visual_editorial_group_detail as detail  on g.group_id = detail.group_id   ORDER BY img_date DESC LIMIT 0,100
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7656 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7794 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7612 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7692 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7791 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7815 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7842 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7689 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7707 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7737 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7740 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7872 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7731 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7857 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7606 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7677 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7713 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7719 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7725 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7755 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7761 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7591 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7603 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7668 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7686 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7722 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7788 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7866 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7899 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7615 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7624 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7647 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7746 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7833 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7863 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7627 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7641 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7680 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7698 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7785 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7653 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7704 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7827 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7836 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7839 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7728 LIMIT 0,1
+info2019/01/04 03:11:52 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7767 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7776 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7630 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7671 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7701 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7710 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7716 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7812 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7818 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7824 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7881 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7845 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7851 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7665 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7749 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7758 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7764 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7797 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7800 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7875 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7621 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7662 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7683 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7734 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7752 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7600 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7659 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7860 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7770 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7806 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7809 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7609 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7633 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7644 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7674 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7695 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7854 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7884 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7597 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7636 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7773 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7779 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7821 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7638 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7743 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7782 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7830 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7878 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7594 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7618 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7650 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7803 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,file_name from visual_editorial_pic_images where id=7869 LIMIT 0,1
+info2019/01/04 03:11:53 server.go:64: SELECT id,type,text,origin_imgurl,img_id,link_id,img_width,recommend_type FROM visual_editorial_banner ORDER BY id DESC,img_width ASC LIMIT 0,12
+info2019/01/04 03:12:12 server.go:38: SELECT COUNT(1) AS c  FROM visual_editorial_group
+info2019/01/04 03:12:12 server.go:59: map[c:616]
+info2019/01/04 03:12:12 server.go:64: SELECT g.group_id,title,img_date,g.group_pics_num,detail.equalw_url,detail.equalw_image_id,detail.equalh_url,detail.equalh_image_id,detail.url800,detail.url800_image_id from visual_editorial_group as g inner JOIN visual_editorial_group_detail as detail  on g.group_id = detail.group_id   ORDER BY img_date DESC LIMIT 0,100
+info2019/01/04 03:12:12 server.go:64: SELECT id,type,text,origin_imgurl,img_id,link_id,img_width,recommend_type FROM visual_editorial_banner ORDER BY id DESC,img_width ASC LIMIT 0,12

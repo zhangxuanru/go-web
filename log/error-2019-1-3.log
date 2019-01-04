@@ -1,0 +1,30 @@
+error2019/01/03 12:02:45 router.go:21: URL /?page=1 ERR: template: index.html:356: too many declarations in command
+error2019/01/03 12:02:45 router.go:21: URL /favicon.ico ERR: template: index.html:356: too many declarations in command
+error2019/01/03 12:03:38 router.go:21: URL /?page=1 ERR: template: index.html:356: unexpected bad character U+005B '[' in range
+error2019/01/03 12:03:38 router.go:21: URL /favicon.ico ERR: template: index.html:356: unexpected bad character U+005B '[' in range
+error2019/01/03 12:03:39 router.go:21: URL /?page=1 ERR: template: index.html:356: unexpected bad character U+005B '[' in range
+error2019/01/03 12:03:39 router.go:21: URL /favicon.ico ERR: template: index.html:356: unexpected bad character U+005B '[' in range
+error2019/01/03 12:12:45 router.go:21: URL /?page=1 ERR: template: index.html:359: unexpected bad character U+002B '+' in command
+error2019/01/03 12:12:46 router.go:21: URL /favicon.ico ERR: template: index.html:359: unexpected bad character U+002B '+' in command
+error2019/01/03 12:12:48 router.go:21: URL /favicon.ico ERR: template: index.html:359: unexpected bad character U+002B '+' in command
+error2019/01/03 12:12:48 router.go:21: URL /?page=1 ERR: template: index.html:359: unexpected bad character U+002B '+' in command
+error2019/01/03 12:12:48 router.go:21: URL /favicon.ico ERR: template: index.html:359: unexpected bad character U+002B '+' in command
+error2019/01/03 12:12:48 router.go:21: URL /?page=1 ERR: template: index.html:359: unexpected bad character U+002B '+' in command
+error2019/01/03 12:12:48 router.go:21: URL /favicon.ico ERR: template: index.html:359: unexpected bad character U+002B '+' in command
+error2019/01/03 12:12:48 router.go:21: URL /?page=1 ERR: template: index.html:359: unexpected bad character U+002B '+' in command
+error2019/01/03 12:12:49 router.go:21: URL /favicon.ico ERR: template: index.html:359: unexpected bad character U+002B '+' in command
+error2019/01/03 12:12:50 router.go:21: URL /?page=1 ERR: template: index.html:359: unexpected bad character U+002B '+' in command
+error2019/01/03 12:12:50 router.go:21: URL /favicon.ico ERR: template: index.html:359: unexpected bad character U+002B '+' in command
+error2019/01/03 12:13:07 router.go:21: URL /?page=1 ERR: template: index.html:359: unexpected bad character U+003D '=' in command
+error2019/01/03 12:13:08 router.go:21: URL /favicon.ico ERR: template: index.html:359: unexpected bad character U+003D '=' in command
+error2019/01/03 12:13:08 router.go:21: URL /?page=1 ERR: template: index.html:359: unexpected bad character U+003D '=' in command
+error2019/01/03 12:13:08 router.go:21: URL /favicon.ico ERR: template: index.html:359: unexpected bad character U+003D '=' in command
+error2019/01/03 12:13:30 router.go:21: URL /?page=1 ERR: template: index.html:359: unexpected bad character U+002B '+' in command
+error2019/01/03 12:13:30 router.go:21: URL /favicon.ico ERR: template: index.html:359: unexpected bad character U+002B '+' in command
+error2019/01/03 12:13:30 router.go:21: URL /?page=1 ERR: template: index.html:359: unexpected bad character U+002B '+' in command
+error2019/01/03 12:13:31 router.go:21: URL /favicon.ico ERR: template: index.html:359: unexpected bad character U+002B '+' in command
+error2019/01/03 12:13:31 router.go:21: URL /?page=1 ERR: template: index.html:359: unexpected bad character U+002B '+' in command
+error2019/01/03 12:13:31 router.go:21: URL /?page=1 ERR: template: index.html:359: unexpected bad character U+002B '+' in command
+error2019/01/03 12:13:31 router.go:21: URL /?page=1 ERR: template: index.html:359: unexpected bad character U+002B '+' in command
+error2019/01/03 12:13:31 router.go:21: URL /favicon.ico ERR: template: index.html:359: unexpected bad character U+002B '+' in command
+error2019/01/03 12:13:31 router.go:21: URL /favicon.ico ERR: template: index.html:359: unexpected bad character U+002B '+' in command
