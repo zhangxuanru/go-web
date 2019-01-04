@@ -2,6 +2,8 @@ package logic
 
 import (
 	"application/models"
+	"strings"
+	"fmt"
 )
 
 func GetLeftBannerList(start int,limit int)  (r map[int]map[string]string,err error) {
@@ -27,7 +29,11 @@ func processBannerImgUrl(list  map[int]map[string]string) (r map[int]map[string]
 		}else{
 			v["imgUrl"] = v["origin_imgurl"]
 		}
-	}
+	  v["href"] = fmt.Sprintf("/group/%s",v["link_id"])
+	  if strings.Contains(v["link"],"topic"){
+	  	   v["href"] = fmt.Sprintf("/topic/%s",v["link_id"])
+	  }
+    }
 	return list
 }
 

@@ -8,7 +8,7 @@ import (
 )
 
 const BANNER_TABLE  = config.DB_PREFIX+"banner"
-var Fields = []string{"id","type","text","origin_imgurl","img_id","link_id","img_width","recommend_type"}
+var Fields = []string{"id","type","text","origin_imgurl","link","img_id","link_id","img_width","recommend_type"}
 
 func GetBannerList(where string,start int,limit int) (list map[int]map[string]string,err error) {
 	  field := strings.Join(Fields,",")
