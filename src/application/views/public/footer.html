@@ -1,0 +1,52 @@
+{{define "footer"}}
+<script src="http://127.0.0.1/static/js/jquery-1.11.3.min.js"></script>
+<script src="http://127.0.0.1/static/js/bootstrap.min.js"></script>
+<script src="http://127.0.0.1/static/js/md5.js"></script>
+<script src="http://127.0.0.1/static/js/common.6108aaf6cb.js"></script>
+<script type="text/javascript" src="http://127.0.0.1/static/js/index.032e0077.js"></script>
+
+ <script type="text/javascript">
+     var currPage = "{{.page}}";
+     var totalPage = "{{.totalPage}}"
+     currPage = parseInt(currPage)
+     totalPage = parseInt(totalPage)
+
+     $(".btn-go").click(function () {
+         var page = $("#ed-index-pg").val()
+         if(totalPage!="" && page > totalPage){
+             return
+         }
+         if(page!="" && parseInt(page) > 0 && currPage != page){
+              window.location.href="/?page="+page
+         }
+     })
+
+     $(".nextPage").click(function () {
+         if(currPage+1 > totalPage){
+             currPage = 0
+         }
+         window.location.href="/?page="+(currPage+1)
+     })
+
+     $(".prevPage").click(function () {
+         if(currPage == 1){
+               currPage = 2
+         }
+         window.location.href="/?page="+(currPage-1)
+     })
+ </script>
+
+<div id="@@_sense_root">
+    <div class="app__top___277yO kjuhy" style="z-index: 2147483647;">
+        <div class="app__app___2rhkh app__appRight___3X7La">
+            <div class="app__panel___2o6y3" style="width: 0px;">
+                <div class="app__toggler___3JlM0" role="button">
+                    <svg width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M13.886 12l5.723 5.724a1.333 1.333 0 1 1-1.885 1.885L12 13.886l-5.724 5.723a1.333 1.333 0 1 1-1.885-1.885L10.114 12 4.391 6.276a1.333 1.333 0 0 1 1.885-1.885L12 10.114l5.724-5.723a1.333 1.333 0 0 1 1.885 1.885L13.886 12z"></path></svg>
+ </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{end}}
