@@ -9,6 +9,7 @@ import (
 func InitRouter()  {
       http.HandleFunc("/",Call(controllers.Index))
       http.HandleFunc("/404",Call(controllers.NotFound))
+      http.HandleFunc("/group/",Call(controllers.GroupDetail))
  }
 
 func Call( hand http.HandlerFunc) http.HandlerFunc {
