@@ -5,6 +5,7 @@ import (
 	"application/logic"
 	"math"
 	"strconv"
+	"config"
 )
 
 var Limit = 100
@@ -22,7 +23,7 @@ func Index(writer http.ResponseWriter, request *http.Request)  {
 		page = 1
 	}
 	start := (page-1) * Limit
-	//group
+	//group list
 	total := logic.GetGroupCount("")
 	if total > 0{
 	    r,e = logic.GetGroupList("", start, Limit)
@@ -40,6 +41,7 @@ func Index(writer http.ResponseWriter, request *http.Request)  {
 	 result["groupList"] = r
  	 result["lBanner"] = lBanner
 	 result["rBanner"] = rBanner
+	 result["baseUrl"] = config.BASEURL
 	 result["total"] = total
 	 result["totalPage"] = totalPage
 	 result["page"] = page
