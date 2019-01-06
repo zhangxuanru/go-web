@@ -4,6 +4,7 @@ import (
 	"application/models"
 	"strconv"
 	"time"
+	"fmt"
 )
 
 //获取group列表
@@ -23,6 +24,17 @@ func GetGroupList(where string,start int,limit int)  (r map[int]map[string]strin
 	}
 	return list, e
 }
+
+//group详情
+func GetGoodsDetailById(groupId int,where string) (list map[string]string, err error) {
+	list, err = models.GetGoodsDetailById(groupId,where)
+    fmt.Printf("%+v",list)
+	if err != nil{
+		 return
+	}
+	 return
+}
+
 
 //获取group总数
 func GetGroupCount(where string) (total int) {
