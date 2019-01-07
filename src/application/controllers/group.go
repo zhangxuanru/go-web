@@ -2,10 +2,10 @@ package controllers
 
 import (
 	"net/http"
-	"fmt"
 	"strings"
 	"application/logic"
 	"strconv"
+	"config"
 )
 
 func GroupDetail(writer http.ResponseWriter, request *http.Request)  {
@@ -19,14 +19,15 @@ func GroupDetail(writer http.ResponseWriter, request *http.Request)  {
 		Redirect404(writer,request)
 		return
 	}
-	list, err := logic.GetGoodsDetailById(groupId, "")
+	row, err := logic.GetGoodsDetailById(groupId, "")
 	if err != nil{
 		Redirect404(writer,request)
 		return
 	}
-
-	fmt.Fprintln(writer,request.URL,request.URL.Query(),request.URL.Path)
-
-	fmt.Fprintln(writer,groupId)
-
+	result := make(map[string]interface{})
+	result["row"] = row
+	result["title"] = row["title"]
+	result["description"] = config.DESCRIPTION
+	result["keywords"] = config.KEYWORDS
+	DisplayLayOut("group/index.html",result,writer)
 }

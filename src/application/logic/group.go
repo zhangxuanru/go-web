@@ -5,6 +5,7 @@ import (
 	"strconv"
 	"time"
 	"fmt"
+	"strings"
 )
 
 //获取group列表
@@ -28,7 +29,17 @@ func GetGroupList(where string,start int,limit int)  (r map[int]map[string]strin
 //group详情
 func GetGoodsDetailById(groupId int,where string) (list map[string]string, err error) {
 	list, err = models.GetGoodsDetailById(groupId,where)
-    fmt.Printf("%+v",list)
+	if len(list) == 0 || err !=nil{
+		 return
+	}
+	replacer := strings.NewReplacer("\r", "", "\n", "", " ", "")
+	list["caption"] =  replacer.Replace(list["caption"])
+
+	imgDate, _ := strconv.ParseInt(list["img_date"], 10, 64)
+	format := time.Unix(imgDate, 0).Format("2006-01-02 15:04:05")
+	list["img_date"] = format
+
+	fmt.Printf("%+v",list)
 	if err != nil{
 		 return
 	}

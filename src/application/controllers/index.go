@@ -45,6 +45,9 @@ func Index(writer http.ResponseWriter, request *http.Request)  {
 	 result["total"] = total
 	 result["totalPage"] = totalPage
 	 result["page"] = page
+	 result["title"] = config.TITLE
+	 result["description"] = config.DESCRIPTION
+	 result["keywords"] = config.KEYWORDS
 	 DisplayLayOut("index/index.html",result,writer)
 }
 
