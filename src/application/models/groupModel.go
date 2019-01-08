@@ -47,7 +47,7 @@ func GetGoodsDetailById(groupId int,where string) (list map[string]string, err e
 
 
 func GetGroupDetailByIdData(groupId int,where string)  (list map[string]string, err error) {
-	Fields =[]string{"equalw_url","equalw_image_id","equalh_url","equalh_image_id","url800","url800_image_id","caption"}
+	Fields =[]string{"equalw_url","width","height","equalw_image_id","equalh_url","equalh_image_id","url800","url800_image_id","caption"}
     field := strings.Join(Fields,",")
 	if len(where) > 0{
        sql= fmt.Sprintf("SELECT %s FROM %s WHERE group_id=%d AND  %s",field,GROUP_DETAIL_TABLE,groupId,where)

@@ -6,6 +6,7 @@ import (
 	"strconv"
 	"config"
 	"libary/redis"
+	"libary/util"
 )
 
 func GetImgUrl(imgId string) (imgUrl string) {
@@ -31,6 +32,47 @@ func GetImgUrl(imgId string) (imgUrl string) {
 	redis.Set(key,"","",0)
     return ""
 }
+
+
+//获取pic 列表
+func GetPicListByGroupId(groupId int,where string,start,limit int) (r map[int]map[string]string, err error) {
+	r, err = models.GetPicListByGroupId(groupId,where, start,limit)
+	if err != nil{
+		return
+	}
+	for _,v := range r{
+		imgId := v["img_id"]
+        if imgId != "0" && len(imgId) > 0 {
+			v["img_url"] = GetImgUrl(imgId)
+		 }
+		 v["title"] = util.SecurityString(v["title"])
+		 v["img_date"] = util.FormattingTimeRubbing(v["img_date"])
+	}
+   return
+}
+
+func GetPicCountByGroupId(groupId int) (int) {
+	r, err := models.GetPicCountByGroupId(groupId)
+	if len(r) == 0 || err !=nil{
+		return 0
+	}
+	i, e := strconv.Atoi(r["c"])
+	if e!=nil{
+		return 0
+	}
+	return i
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

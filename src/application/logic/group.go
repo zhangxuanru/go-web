@@ -4,7 +4,7 @@ import (
 	"application/models"
 	"strconv"
 	"time"
-	"fmt"
+	"libary/util"
 	"strings"
 )
 
@@ -32,14 +32,21 @@ func GetGoodsDetailById(groupId int,where string) (list map[string]string, err e
 	if len(list) == 0 || err !=nil{
 		 return
 	}
-	replacer := strings.NewReplacer("\r", "", "\n", "", " ", "")
-	list["caption"] =  replacer.Replace(list["caption"])
-
-	imgDate, _ := strconv.ParseInt(list["img_date"], 10, 64)
-	format := time.Unix(imgDate, 0).Format("2006-01-02 15:04:05")
-	list["img_date"] = format
-
-	fmt.Printf("%+v",list)
+	//获取分类
+	list["cateGory"] = ""
+	if catId,ok := list["oneCategory"];ok{
+		id, _ := strconv.Atoi(catId)
+	 	cateRow, _ := GetCateGoryDataById(id)
+	 	if len(cateRow) > 0{
+			list["cateGory"] = cateRow["category_name"]
+		}
+	}
+	if len(list["cateGory"]) > 0{
+		replacer := strings.NewReplacer("新闻滚动", "","滚动","")
+		list["cateGory"] = replacer.Replace(list["cateGory"])
+	}
+	list["caption"]  = util.SecurityString(list["caption"])
+	list["img_date"] = util.FormattingTimeRubbing(list["img_date"])
 	if err != nil{
 		 return
 	}
