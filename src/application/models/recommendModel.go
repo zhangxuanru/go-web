@@ -15,12 +15,12 @@ func GetLinkDataByCategoryId(categoryId int) (result map[int]map[string]string,e
    return  db.GetList(sql)
 }
 
-func GetRemmendData(categoryId int,where string) (result map[int]map[string]string,err error) {
+func GetRecommendData(categoryId int,where string,start,limit int) (result map[int]map[string]string,err error) {
 	field:="title,link,src,sort,category_id,image_id,item_id,item_type,data_type"
 	if len(where) > 0{
-		sql = fmt.Sprintf("SELECT %s FROM %s WHERE category_id=%d AND %s ORDER BY id DESC",field,RECOMMEND_TABLE,categoryId,where)
+		sql = fmt.Sprintf("SELECT %s FROM %s WHERE category_id=%d AND %s ORDER BY id DESC LIMIT %d,%d",field,RECOMMEND_TABLE,categoryId,where,start,limit)
 	}else{
-        sql = fmt.Sprintf("SELECT  %s FROM %s WHERE category_id=%d ORDER BY id DESC  ",field,RECOMMEND_TABLE,categoryId)
+        sql = fmt.Sprintf("SELECT %s FROM %s WHERE category_id=%d ORDER BY id DESC LIMIT %d,%d ",field,RECOMMEND_TABLE,categoryId,start,limit)
   }
    return  db.GetList(sql)
 }

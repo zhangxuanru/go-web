@@ -58,6 +58,7 @@ func GroupDetail(writer http.ResponseWriter, request *http.Request)  {
 	result["picList"] = picList
 	result["description"] = config.DESCRIPTION
 	result["keywords"] = config.KEYWORDS
+	result["baseUrl"] = config.BASEURL
 	DisplayLayOut("group/index.html",result,writer)
 }
 

@@ -6,8 +6,8 @@ func GetLinkDataByCategoryId(categoryId int)  (result map[int]map[string]string,
 	return models.GetLinkDataByCategoryId(categoryId)
 }
 
-func GetRemmendData(categoryId int,where string) (result map[int]map[string]string,err error) {
-	return models.GetRemmendData(categoryId,where)
+func GetRecommendData(categoryId int,where string, start int,limit int) (result map[int]map[string]string,err error) {
+	return models.GetRecommendData(categoryId,where,start,limit)
 }
 
 
