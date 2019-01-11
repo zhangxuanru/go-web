@@ -7,6 +7,7 @@ import (
 	"config"
 	"libary/redis"
 	"libary/util"
+	"strings"
 )
 
 func GetImgUrl(imgId string) (imgUrl string) {
@@ -17,6 +18,9 @@ func GetImgUrl(imgId string) (imgUrl string) {
 	key := fmt.Sprintf(config.REDIS_IMAGEURL_ID,id)
 	val := redis.Get(key)
 	if len(val) > 0{
+		if strings.Contains(val,"http"){
+             return val
+		}
 		 return config.STATICDOMAIN+"/"+val
 	}
 	where := fmt.Sprintf("id=%d",id)
@@ -24,13 +28,18 @@ func GetImgUrl(imgId string) (imgUrl string) {
 	if err!=nil{
 		 return  ""
 	}
-	if fileName,ok:= rs[0]["file_name"];ok{
+	if fileName,ok:= rs[0]["file_name"];ok && len(fileName) > 0{
 		 imgUrl = config.STATICDOMAIN+"/"+fileName
 		 redis.Set(key,fileName,"",0)
          return  imgUrl
 	}
+   if len(rs[0]["src_url"]) > 0{
+	   redis.Set(key,rs[0]["src_url"],"",0)
+	   return  rs[0]["src_url"]
+   }
     return ""
-}
+ }
+
 
 
 //获取pic 列表
@@ -61,17 +70,6 @@ func GetPicCountByGroupId(groupId int) (int) {
 	}
 	return i
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 

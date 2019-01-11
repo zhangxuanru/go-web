@@ -11,9 +11,9 @@ const PIC_TABLE  = config.DB_PREFIX+"pic"
 
 func GePicList(where string,start int,limit int) (r map[int]map[string]string, err error) {
 	if len(where) > 0{
-   	   sql = fmt.Sprintf("SELECT id,file_name from %s where %s LIMIT %d,%d",PIC_TABLE_IMAGES,where,start,limit)
+   	   sql = fmt.Sprintf("SELECT id,file_name,src_url from %s where %s LIMIT %d,%d",PIC_TABLE_IMAGES,where,start,limit)
 	}else{
-	   sql = fmt.Sprintf("SELECT id,file_name from %s LIMIT %d,%d",PIC_TABLE_IMAGES,start,limit)
+	   sql = fmt.Sprintf("SELECT id,file_name,src_url from %s LIMIT %d,%d",PIC_TABLE_IMAGES,start,limit)
 	}
 	return db.GetList(sql)
 }
