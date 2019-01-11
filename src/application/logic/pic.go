@@ -17,7 +17,7 @@ func GetImgUrl(imgId string) (imgUrl string) {
 	key := fmt.Sprintf(config.REDIS_IMAGEURL_ID,id)
 	val := redis.Get(key)
 	if len(val) > 0{
-		 return val
+		 return config.STATICDOMAIN+"/"+val
 	}
 	where := fmt.Sprintf("id=%d",id)
 	rs, err := models.GePicList(where, 0, 1)
@@ -26,10 +26,9 @@ func GetImgUrl(imgId string) (imgUrl string) {
 	}
 	if fileName,ok:= rs[0]["file_name"];ok{
 		 imgUrl = config.STATICDOMAIN+"/"+fileName
-		 redis.Set(key,imgUrl,"",0)
+		 redis.Set(key,fileName,"",0)
          return  imgUrl
 	}
-	redis.Set(key,"","",0)
     return ""
 }
 

@@ -38,7 +38,7 @@
                                 </section>
                                 <section class="event-grid-details group-card" data-reactid="214">
                                     <div data-reactid="215">
-                                        2019-01-07 17:45:39
+                                        {{$v.img_date}}
                                     </div>
                                 </section>
                                 <section class="event-grid-title" title="{{$v.title}}" data-reactid="216">
@@ -49,19 +49,12 @@
                                         
                                     </i>
                                     <div data-reactid="219">
-                                        <!-- react-text: 220 -->
-                                        433
-                                        <!-- /react-text -->
-                                        <!-- react-text: 221 -->
-                                        张
-                                        <!-- /react-text -->
+                                        {{$v.group_pics_num}}张
                                     </div>
                                 </section>
                             </article>
                                {{end}}
-
                         </div>
-                        <!-- react-empty: 372 -->
                     </div>
                 </div>
             </div>
@@ -72,8 +65,8 @@
                     </div>
                     <div class="channelv-nav-tag" data-reactid="376">
                         <div class="channelNav active" data-index="" data-id="220637" data-pid="0"
-                             data-code="" data-name="体育滚动" data-path="" data-reactid="377">
-                            体育滚动
+                             data-code="" data-name="{{.catName}}滚动" data-path="" data-reactid="377">
+                            {{.catName}}滚动
                         </div>
                         <div class="channelNav" data-index="0" data-id="220589" data-pid="220637"
                              data-code="3835" data-name="国内足坛" data-path="Sport" data-reactid="378">
@@ -3473,43 +3466,16 @@
                     </div>
                 </div>
             </div>
+
             <div class="w1200 gen" data-reactid="3462">
-						<span class="gen-item" data-reactid="3463">
-							<a href="/topic/101139" target="_blank" data-reactid="3464">
-								<img src="//goss1.vcg.com//c2d4b8a0-c069-11e8-8abd-8b3cfb42291e.jpg" title="18/19NBA联赛"
-                                     data-reactid="3465">
-								<em data-reactid="3466">
-									18/19NBA联赛
-								</em>
+                {{range $i,$v := .picGeneralize}}
+					 <span class="gen-item" data-reactid="3463" style="margin-bottom: 30px; float: left">
+							<a href="/topic/{{$v.item_id}}" target="_blank" data-reactid="3464">
+								<img src="{{$v.src}}" title="{{$v.title}}" data-reactid="3465">
+								<em data-reactid="3466">{{$v.title}}</em>
 							</a>
 						</span>
-                <span class="gen-item" data-reactid="3467">
-							<a href="/topic/100614" target="_blank" data-reactid="3468">
-								<img src="//goss4.vcg.com//bd72b330-c069-11e8-ad97-535db280d817.jpg" title="2018中超联赛收官"
-                                     data-reactid="3469">
-								<em data-reactid="3470">
-									2018中超联赛收官
-								</em>
-							</a>
-						</span>
-                <span class="gen-item" data-reactid="3471">
-							<a href="/topic/767" target="_blank" data-reactid="3472">
-								<img src="//goss1.vcg.com//c01c7670-c069-11e8-b979-116e41bb328b.jpg" title="体坛明星八卦"
-                                     data-reactid="3473">
-								<em data-reactid="3474">
-									体坛明星八卦
-								</em>
-							</a>
-						</span>
-                <span class="gen-item" data-reactid="3475">
-							<a href="/topic/10655" target="_blank" data-reactid="3476">
-								<img src="//goss3.vcg.com//44801bb0-5fc2-11e7-b825-b712f3e0dc62.jpg" title="选题盘点"
-                                     data-reactid="3477">
-								<em data-reactid="3478">
-									选题盘点
-								</em>
-							</a>
-						</span>
+                {{end}}
             </div>
         </div>
        {{template "copyright" .}}

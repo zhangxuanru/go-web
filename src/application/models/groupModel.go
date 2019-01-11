@@ -25,12 +25,15 @@ func GetGroupList(where string,start int,limit int) (list map[int]map[string]str
 
 //获取group详情
 func GetGoodsDetailById(groupId int,where string) (list map[string]string, err error) {
+	if groupId == 0{
+		return
+	}
 	Fields = []string{"group_id","oneCategory","title","first_pic_id","group_pics_num","img_date"}
-  if len(where) > 0{
-      sql= fmt.Sprintf("SELECT %s  FROM %s WHERE group_id=%d AND %s",strings.Join(Fields,","), GROUP_TABLE,groupId,where)
+    if len(where) > 0{
+          sql= fmt.Sprintf("SELECT %s  FROM %s WHERE group_id=%d AND %s",strings.Join(Fields,","), GROUP_TABLE,groupId,where)
 	  }else{
-	  sql= fmt.Sprintf("SELECT %s FROM %s WHERE group_id=%d ",strings.Join(Fields,","),GROUP_TABLE,groupId)
-    }
+	     sql= fmt.Sprintf("SELECT %s FROM %s WHERE group_id=%d ",strings.Join(Fields,","),GROUP_TABLE,groupId)
+     }
 	list,err = db.GetRow(sql)
 	if len(list) == 0{
 		return
