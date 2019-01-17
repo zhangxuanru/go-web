@@ -5,12 +5,15 @@ import (
 	"strconv"
 	"libary/util"
 	"strings"
+	"application/Service"
 )
 
 func GetCateGoryDataById(categoryId int) (r map[string]string, err error) {
 	 return  models.GetCateGoryDataById(categoryId)
 }
 
+
+//获取分类名称数据
 func GetCateGoryById(categoryId int) (r map[string]string, err error) {
 	r, err = GetCateGoryDataById(categoryId)
 	if len(r) > 0{
@@ -20,7 +23,12 @@ func GetCateGoryById(categoryId int) (r map[string]string, err error) {
 	return
 }
 
-//栏目详情页整理数据
+//根据分类ID获取子分类数据
+func GetSubCateGoryData(categoryId,start,limit int) (result map[int]map[string]string,err error) {
+    return models.GetSubCateGoryData(categoryId,start,limit)
+}
+
+//栏目详情页推荐group,链接tag,图片推荐  数据
 func GetCateColDetail(categoryId int)  (linkTags,picGeneralize,channelRecommend map[int]map[string]string,err error) {
 	linkTags, err = GetLinkDataByCategoryId(categoryId)
  	picGeneralize, _ = GetRecommendData(categoryId, " data_type='1' ",0,4)
@@ -46,6 +54,11 @@ func GetCateColDetail(categoryId int)  (linkTags,picGeneralize,channelRecommend 
 		}
 	}
 	return
+}
+
+
+func GetCateGoryGroupList(categoryId int)  {
+      Service.GetCategoryGroupList(categoryId)
 }
 
 
