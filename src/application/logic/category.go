@@ -6,6 +6,7 @@ import (
 	"libary/util"
 	"strings"
 	"application/Service"
+	"fmt"
 )
 
 func GetCateGoryDataById(categoryId int) (r map[string]string, err error) {
@@ -57,9 +58,43 @@ func GetCateColDetail(categoryId int)  (linkTags,picGeneralize,channelRecommend 
 }
 
 
-func GetCateGoryGroupList(categoryId int)  {
-      Service.GetCategoryGroupList(categoryId)
+//根据分类ID获取group数据
+func GetCateGoryGroupList(categoryId,start,limit int) (ret map[int]map[string]interface{},total string) {
+	ret,total = Service.GetCategoryGroupList(categoryId, start, limit)
+	for _,item := range ret{
+		equalhImageId,ok := item["equalh_image_id"]
+		if ok{
+			imgId := equalhImageId.(float64)
+			imageId := fmt.Sprintf("%.0f",imgId)
+			imgUrl := GetImgUrl(imageId)
+			if len(imgUrl) > 0{
+		         item["equalh_url"] = imgUrl
+			}
+		}
+		equalwUrlImgid,ok := item["equalw_url_imgid"]
+		if ok{
+			imgId := equalwUrlImgid.(float64)
+			imageId := fmt.Sprintf("%.0f",imgId)
+			imgUrl := GetImgUrl(imageId)
+			if len(imgUrl) > 0{
+			    item["equalw_url"] = imgUrl
+			}
+		}
+		imageId,ok := item["url800_imgid"]
+		if ok{
+			imgId := imageId.(float64)
+			imageId := fmt.Sprintf("%.0f",imgId)
+			imgUrl := GetImgUrl(imageId)
+			if len(imgUrl) > 0{
+		    	item["url800"] = imgUrl
+			}
+	 	}
+	 	item["group_id"] = fmt.Sprintf("%.0f",item["group_id"])
+	}
+	return ret,total
 }
+
+
 
 
 

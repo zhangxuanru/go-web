@@ -7,18 +7,24 @@ import (
 	"application/logic"
 	"libary/logger"
 	"config"
+	"math"
+	"fmt"
 )
 
 //栏目页
 var linkTags,picGeneralize,channelRecommend map[int]map[string]string
+var catRow map[string]string
+var subCategoryList  map[int]map[string]string
 var err error
+var size = 100
 
+//页面分页还没有做
 func Detail(w http.ResponseWriter, r *http.Request)  {
 	catId := strings.Replace(r.URL.Path, "/entertainment/", "", -1)
 	pid := r.FormValue("pid")
 	cId, _ := strconv.Atoi(catId)
 	pCid,_ := strconv.Atoi(pid)
-	var catRow map[string]string
+	page,_ := strconv.Atoi(r.FormValue("page"))
 	if cId == 0 {
 		Redirect404(w,r)
 		return
@@ -35,9 +41,10 @@ func Detail(w http.ResponseWriter, r *http.Request)  {
 		return
 	}
 	//子分类
-	subCategoryList, _ := logic.GetSubCateGoryData(cId,0,12)
 	if pCid > 0{
 		 subCategoryList, _ = logic.GetSubCateGoryData(pCid,0,12)
+	}else{
+		 subCategoryList, _ = logic.GetSubCateGoryData(cId,0,12)
 	}
 	//当前分类信息
    if pCid > 0{
@@ -45,14 +52,25 @@ func Detail(w http.ResponseWriter, r *http.Request)  {
    }else{
 	   catRow, _ = logic.GetCateGoryById(cId)
    }
-   //当前分类group
-   logic.GetCateGoryGroupList(cId)
-
-   if len(pid) == 0{
-	   pid = catId
+	if len(pid) == 0{
+		pid = catId
+	}
+   //当前分类group list
+   if page == 0{
+	    page = 1
+   }
+   groupList,total := logic.GetCateGoryGroupList(cId, page, size)
+   countPage:="0"
+   if len(total) > 0{
+	   count, _ := strconv.Atoi(total)
+	   maxPage := math.Ceil(float64(count/size))
+	   countPage = fmt.Sprintf("%.0f",maxPage)
    }
     catName := catRow["category_name"]
 	result := make(map[string]interface{})
+	result["groupList"] = groupList
+	result["countPage"] = countPage
+	result["total"] = total
 	result["linkTags"] = linkTags
 	result["linkTagsLen"] = len(linkTags)
 	result["picGeneralize"] = picGeneralize

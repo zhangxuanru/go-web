@@ -68,6 +68,7 @@
                     </div>
                     {{$catId := .catId}}
                     {{$pid :=.pid}}
+                    {{$total := .countPage}}
                     <div class="channelv-nav-tag" data-reactid="376">
                         <div class="channelNav {{if eq $catId $pid}}active{{end}}" data-index=""  data-pid="0"
                              data-code="" data-name="{{.catName}}滚动" data-path="" data-reactid="377">
@@ -82,6 +83,7 @@
                     </div>
                     <div class="channelv-nav-bar" data-reactid="408">
                         <div class="channelv-nav-bar-page" data-reactid="414">
+                           {{if ne $total "0"}}
                             <div style="float:right;" data-reactid="415">
                                 <div class="pull-right ml-20 sort l5 mt-8" data-reactid="416">
                                     <a href="javascript:;" class="pull-left icon pg prev" data-reactid="417">
@@ -93,7 +95,7 @@
                                             /
                                         </samp>
 
-                                        3,242
+                                    {{.countPage}}
 
                                     </div>
                                     <a href="javascript:;" class="pull-left txt-ct btn-go" data-reactid="424">
@@ -104,6 +106,8 @@
                                 </div>
 
                             </div>
+                          {{end}}
+
                         </div>
                     </div>
                 </div>
@@ -112,12 +116,13 @@
                     <div>
                         <div>
                             <div class="image-list clearfix ">
-                                <article class="asset" style="height: 300px;">
+                                {{range $i,$v :=.groupList}}
+                                  <article class="asset" style="height: 300px;">
                                     <section class="image-section">
-                                        <a class="search-result-asset-link" href="/group/506122896" target="_blank">
+                                        <a class="search-result-asset-link" href="/group/{{$v.group_id}}" target="_blank">
                                             <div class="search-result-img">
                                                 <div class="curtains">
-                                                    <img class="srp-asset-image gallery-image" src="//goss1.vcg.com/editorial/vcg/400/new/VCG111184774555.jpg">
+                                                    <img class="srp-asset-image gallery-image" src="{{$v.equalh_url}}">
                                                 </div>
                                             </div>
                                         </a>
@@ -127,63 +132,23 @@
                                             2019-01-08 19:17:57
                                         </div>
                                     </section>
-                                    <section class="event-grid-title" title="18/19CBA第30轮：辽宁衡业Vs八一南昌 球迷热情标语助威辽篮">
-                                        18/19CBA第30轮：辽宁衡业Vs八一南昌 球迷热情标语助威辽篮
-                                    </section>
+                                    <section class="event-grid-title" title=" {{$v.title}}">{{$v.title}}</section>
                                     <section class="event-grid-count">
-                                        <i class="icon iconfont">
-                                            
-                                        </i>
+                                        <i class="icon iconfont"></i>
                                         <div>
-                                            <!-- react-text: 6519 -->
-                                            6
-                                            <!-- /react-text -->
-                                            <!-- react-text: 6520 -->
+                                            {{$v.group_pics_num}}
                                             张
-                                            <!-- /react-text -->
                                         </div>
                                     </section>
                                 </article>
-                                <article class="asset" style="height: 300px;">
-                                    <section class="image-section">
-                                        <a class="search-result-asset-link" href="/group/506122807" target="_blank">
-                                            <div class="search-result-img">
-                                                <div class="curtains">
-                                                    <img class="srp-asset-image gallery-image" src="//goss4.vcg.com/editorial/vcg/400/new/VCG111184771366.jpg">
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </section>
-                                    <section class="event-grid-details group-card">
-                                        <div>
-                                            2019-01-08 18:52:45
-                                        </div>
-                                    </section>
-                                    <section class="event-grid-title" title="18/19CBA第30轮：辽宁衡业Vs八一南昌">
-                                        18/19CBA第30轮：辽宁衡业Vs八一南昌
-                                    </section>
-                                    <section class="event-grid-count">
-                                        <i class="icon iconfont">
-                                            
-                                        </i>
-                                        <div>
-                                            <!-- react-text: 6533 -->
-                                            1
-                                            <!-- /react-text -->
-                                            <!-- react-text: 6534 -->
-                                            张
-                                            <!-- /react-text -->
-                                        </div>
-                                    </section>
-                                </article>
-
+                                {{end}}
                             </div>
-
                         </div>
                     </div>
 
 
                     <div class="mb-30 clearfix" data-reactid="3451">
+                     {{if ne $total "0"}}
                         <div style="float:right;" data-reactid="3452">
                             <div class="pull-right ml-20 sort l5 mt-8" data-reactid="3453">
                                 <a href="javascript:;" class="pull-left icon pg prev" data-reactid="3454">
@@ -191,7 +156,7 @@
                                 <div class="page pull-left" data-reactid="3455">
                                     <input type="text" id="bottom_pagination" value="1" maxlength="4" data-reactid="3456">
                                       /
-                                    3242
+                                    {{.countPage}}
                                 </div>
                                 <a href="javascript:;" class="pull-left txt-ct btn-go" data-reactid="3459">
                                     GO
@@ -199,9 +164,11 @@
                                 <a href="javascript:;" class="pull-left pg icon next" data-reactid="3460">
                                 </a>
                             </div>
-
                         </div>
+                        {{end}}
+
                     </div>
+
                 </div>
             </div>
 

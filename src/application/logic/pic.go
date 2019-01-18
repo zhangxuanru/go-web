@@ -11,6 +11,9 @@ import (
 )
 
 func GetImgUrl(imgId string) (imgUrl string) {
+	if len(imgId) == 0{
+		return ""
+	}
 	id, _ := strconv.Atoi(imgId)
 	if id == 0{
 		 return ""
