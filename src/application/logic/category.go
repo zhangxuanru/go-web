@@ -89,6 +89,12 @@ func GetCateGoryGroupList(categoryId,start,limit int) (ret map[int]map[string]in
 		    	item["url800"] = imgUrl
 			}
 	 	}
+	 	imgDate,ok := item["img_date"]
+	 	if ok{
+			imgDate = item["img_date"].(float64)
+			imgDate := fmt.Sprintf("%.0f",imgDate)
+			item["group_date"] = util.FormattingTimeRubbing(imgDate)
+		}
 	 	item["group_id"] = fmt.Sprintf("%.0f",item["group_id"])
 	}
 	return ret,total

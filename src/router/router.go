@@ -11,6 +11,7 @@ func InitRouter()  {
       http.HandleFunc("/404",Call(controllers.NotFound))
       http.HandleFunc("/group/",Call(controllers.GroupDetail))
       http.HandleFunc("/entertainment/",Call(controllers.Detail))
+      http.HandleFunc("/editorialPic/",Call(controllers.PicPageDetail))
  }
 
 func Call( hand http.HandlerFunc) http.HandlerFunc {

@@ -18,8 +18,7 @@ var subCategoryList  map[int]map[string]string
 var err error
 var size = 100
 
-//页面分页还没有做
-func Detail(w http.ResponseWriter, r *http.Request)  {
+ func Detail(w http.ResponseWriter, r *http.Request)  {
 	catId := strings.Replace(r.URL.Path, "/entertainment/", "", -1)
 	pid := r.FormValue("pid")
 	cId, _ := strconv.Atoi(catId)
@@ -32,28 +31,22 @@ func Detail(w http.ResponseWriter, r *http.Request)  {
 	//推荐group，链接TAG
 	if pCid > 0{
 		linkTags, picGeneralize, channelRecommend, err = logic.GetCateColDetail(pCid)
+		//子分类和当前分类信息
+		subCategoryList, _ = logic.GetSubCateGoryData(pCid,0,12)
+		catRow, _ = logic.GetCateGoryById(pCid)
 	}else{
 	    linkTags, picGeneralize, channelRecommend, err = logic.GetCateColDetail(cId)
+		//子分类和当前分类信息
+		subCategoryList, _ = logic.GetSubCateGoryData(cId,0,12)
+		catRow, _ = logic.GetCateGoryById(cId)
 	}
 	if err!=nil{
 		logger.ErrorLog.Println(r.URL.Path,"-catId:",catId,"-error:",err)
 		Redirect404(w,r)
 		return
 	}
-	//子分类
-	if pCid > 0{
-		 subCategoryList, _ = logic.GetSubCateGoryData(pCid,0,12)
-	}else{
-		 subCategoryList, _ = logic.GetSubCateGoryData(cId,0,12)
-	}
-	//当前分类信息
-   if pCid > 0{
-	   catRow, _ = logic.GetCateGoryById(pCid)
-   }else{
-	   catRow, _ = logic.GetCateGoryById(cId)
-   }
 	if len(pid) == 0{
-		pid = catId
+	 	pid = catId
 	}
    //当前分类group list
    if page == 0{
@@ -71,6 +64,7 @@ func Detail(w http.ResponseWriter, r *http.Request)  {
 	result["groupList"] = groupList
 	result["countPage"] = countPage
 	result["total"] = total
+	result["page"] = page
 	result["linkTags"] = linkTags
 	result["linkTagsLen"] = len(linkTags)
 	result["picGeneralize"] = picGeneralize

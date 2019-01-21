@@ -59,7 +59,7 @@ func GetGroupDataByGroupIdLine(groupIdLine string)(ret map[int]map[string]interf
 			   groupIdSl[k] =  val
 		  }
 	     query := elastic.NewBoolQuery().Must(elastic.NewTermsQuery("group_id", groupIdSl...))
-	     result, e := ES.GetEs().Search().Index("group").Type("_doc").Size(len(groupIdList)).Query(query).Do(context.Background())
+	     result, e := ES.GetEs().Search().Index("group").Type("_doc").Size(len(groupIdList)).Query(query).Sort("img_date",false).Do(context.Background())
 	     if e != nil{
 	          return
 		 }
