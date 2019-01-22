@@ -43,11 +43,9 @@ func GetImgUrl(imgId string) (imgUrl string) {
     return ""
  }
 
-
-
 //获取pic 列表
-func GetPicListByGroupId(groupId int,where string,start,limit int) (r map[int]map[string]string, err error) {
-	r, err = models.GetPicListByGroupId(groupId,where, start,limit)
+func GetPicListByGroupId(groupId int,where string,start,limit int,order string) (r map[int]map[string]string, err error) {
+	r, err = models.GetPicListByGroupId(groupId,where, start,limit,order)
 	if err != nil{
 		return
 	}
@@ -56,6 +54,7 @@ func GetPicListByGroupId(groupId int,where string,start,limit int) (r map[int]ma
         if imgId != "0" && len(imgId) > 0 {
 			v["img_url"] = GetImgUrl(imgId)
 		 }
+		 v["title_old"] = v["title"]
 		 v["title"] = util.SecurityString(v["title"])
 		 v["img_date"] = util.FormattingTimeRubbing(v["img_date"])
 	}
@@ -74,6 +73,9 @@ func GetPicCountByGroupId(groupId int) (int) {
 	return i
 }
 
-
-
+//获取PIC DETAIL表 详情
+func GetPicDetailByPicId(picIds string) (r map[int]map[string]string, err error) {
+	where := "pic_id in ("+picIds+")"
+	return models.GetPicDetailByWhere(where)
+}
 

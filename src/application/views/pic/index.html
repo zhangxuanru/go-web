@@ -1,0 +1,175 @@
+{{template "head" .}}
+     <link href="{{.baseUrl}}/static/css/public/main.css" rel="stylesheet">
+    <link href="{{.baseUrl}}/static/css/index/index.032e0077.css" rel="stylesheet">
+    <link href="{{.baseUrl}}/static/css/pannellum/pannellum.css" rel="stylesheet" />
+    <link href="{{.baseUrl}}/static/css/video/video.css" rel="stylesheet" />
+    <link href="{{.baseUrl}}/static/css/editorial/item.ac7135d6.css" rel="stylesheet" />
+</head>
+
+<body>
+<div id="root">
+    <div data-reactroot="" data-reactid="1" data-react-checksum="1184561461">
+        <div data-reactid="2">
+            <div class="vc-wrap layout" data-reactid="3">
+            {{template "header" .}}
+                <div class="vc-wrap-content editorial-detail" data-reactid="198">
+                    <h2 class="group_title w1200" data-reactid="199">
+                        <a href="/editorial" title="编辑图片" data-reactid="200">
+                            编辑图片
+                        </a>
+                        <span data-reactid="201">
+						<samp data-reactid="202">
+							&gt;
+						</samp>
+						<a href="/group/{{.row.group_id}}" title="{{.row.title}}" data-reactid="203">{{.row.title}}</a>
+					</span>
+                    </h2>
+                    <div class="row w1200 ofhide" data-reactid="204">
+                        <div class="main pb-40" data-reactid="205">
+                            <div class="main-view" data-reactid="206">
+                                <div class="show-image" data-reactid="207">
+                                    <div class="show-image-hd" data-reactid="208">
+                                        <div data-reactid="209">
+                                          {{$nextPicIdLen := .nextPicId|len}}
+                                          {{$prevPicIdLen := .prevPicId|len}}
+
+                                            <a class="fxlink fxlink-prev {{if eq $prevPicIdLen 0}}hide{{end}}" href="/editorialPic/{{.prevPicId}}?groupid={{.groupId}}"
+                                               title="上一页" data-reactid="210">
+                                            </a>
+
+                                            <a class="fxlink fxlink-next {{if eq $nextPicIdLen 0}} hide {{end}}" href="/editorialPic/{{.nextPicId}}?groupid={{.groupId}}"
+                                               title="下一页" data-reactid="211">
+                                            </a>
+
+                                            <img src="{{.row.img_url}}" id="source_image" class="source-image" data-reactid="212" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="caption" data-reactid="214">
+                                    <h5 class="caption-head" data-reactid="215">
+                                        组照说明
+                                    </h5>
+                                    <div class="caption-list" data-reactid="216">
+									<span data-reactid="217">
+										<b data-reactid="218">
+											组照标题 :
+										</b>
+                                        {{.row.title}}
+										<br data-reactid="222" />
+										<b data-reactid="223">
+											组照说明 :
+										</b>
+										<span data-reactid="224">
+											{{.groupInfo.caption}}
+										</span>
+									</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="side" data-reactid="226">
+                                <div class="side-view" data-reactid="227">
+                                    <div class="row" data-reactid="228">
+                                        <div class="col-sm-12 mb-10" data-reactid="229">
+                                            <a target="_blank" href="/group/{{.groupId}}" class="btn btn-block btn-hui" data-reactid="230">
+                                                <i class="icon-images-group" data-reactid="231">
+                                                </i>
+                                                返回组照
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-12 mb-10" data-reactid="237" style="display: none">
+                                            <a class="btn btn-block btn-hui" data-reactid="238">
+                                                <i class="icon-images-downyt" data-reactid="239">
+                                                </i>
+                                                图片下载
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <h5 class="side-view-name" data-reactid="241">
+                                    {{.row.title}}
+                                    </h5>
+                                    <h5 class="side-view-title" data-reactid="242">
+                                        图片说明
+                                    </h5>
+                                    <div class="side-view-info" id="side-view-info-more" style="max-height:150px;overflow:hidden;"
+                                         data-reactid="243">
+                                        {{.caption}}
+                                    </div>
+                                    <h5 class="side-view-title mt-40" data-reactid="247">
+                                        基本信息
+                                    </h5>
+                                    <div class="side-view-info" data-reactid="248">
+									<span class="side-view-info-item" data-reactid="249">
+										<b data-reactid="250">
+											ID：
+										</b>
+										{{.row.res_id|html}}
+									</span>
+                                        <div data-reactid="252">
+                                         {{$sizeLen := .rowDetail.size|len}}
+                                         {{if gt $sizeLen 1}}
+                                            <span class="side-view-info-item" data-reactid="253">
+                                                <b data-reactid="254">
+                                                    尺寸：
+                                                </b>
+                                                {{.rowDetail.size}}
+                                            </span>
+                                         {{end}}
+
+                                         {{$specificationLen := .rowDetail.specification|len}}
+                                           {{if gt $specificationLen 1}}
+                                            <span class="side-view-info-item" data-reactid="256">
+											<b data-reactid="257">
+												规格：
+											</b>
+											{{.rowDetail.specification}}
+										  </span>
+                                           {{end}}
+
+                                          {{$storeSizeLem := .rowDetail.store_size|len}}
+                                             {{if gt $storeSizeLem 1}}
+                                            <span class="side-view-info-item" data-reactid="259">
+											<b data-reactid="260">
+												存储大小：
+											</b>
+											{{.rowDetail.store_size}}
+									     	</span>
+                                           {{end}}
+                                        </div>
+
+                                        <span class="side-view-info-item" data-reactid="272">
+										<b data-reactid="273">
+											版权所有：
+										</b>
+
+										1995-
+
+										2019
+
+										©视觉中国
+
+									</span>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="PageName" value="editorial_detail" data-reactid="277"
+                            />
+                            <input type="hidden" id="PictureID" value="1187127259" data-reactid="278"
+                            />
+
+                        </div>
+                    </div>
+                </div>
+                    {{template "copyright" .}}
+            </div>
+        </div>
+    </div>
+</div>
+{{template "footer" .}}
+<script src="{{.baseUrl}}/static/js/pannellum/three.min.js"></script>
+<script src="{{.baseUrl}}/static/js/pannellum/pannellum.js"></script>
+<script src="{{.baseUrl}}/static/js/video/video.js?t=1527223456049"></script>
+<script src="{{.baseUrl}}/static/js/editorial/item.ac7135d6.js"></script>
+</body>
+</html>

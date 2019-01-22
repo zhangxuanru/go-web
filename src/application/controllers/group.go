@@ -36,7 +36,7 @@ func GroupDetail(writer http.ResponseWriter, request *http.Request)  {
 		return
 	}
 	//get pic list
-	picList, e := logic.GetPicListByGroupId(groupId,"",start,Limit)
+	picList, e := logic.GetPicListByGroupId(groupId,"",start,Limit,"")
 	if e!= nil{
 		Redirect404(writer,request)
 		return
