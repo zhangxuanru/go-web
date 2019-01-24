@@ -41,14 +41,12 @@ func GroupDetail(writer http.ResponseWriter, request *http.Request)  {
 		Redirect404(writer,request)
 		return
 	}
-	totalPage := float64(0)
-	groupPicsNum,ok := row["group_pics_num"]
-	if ok{
-		num, _ := strconv.ParseFloat(groupPicsNum, 64)
-		totalPage = math.Ceil(num/float64(Limit))
-	}
+    totalPage := float64(0)
+    num := logic.GetPicCountByGroupId(groupId)
+    totalPage = math.Ceil(float64(num)/float64(Limit))
 	result := make(map[string]interface{})
 	result["row"] = row
+	result["num"] = num
 	result["totalPage"] = totalPage
 	result["page"] = page
 	result["title"] = row["title"]

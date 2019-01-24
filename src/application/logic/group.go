@@ -6,6 +6,8 @@ import (
 	"time"
 	"libary/util"
 	"strings"
+	"application/Service"
+	"fmt"
 )
 
 //获取group列表
@@ -25,6 +27,38 @@ func GetGroupList(where string,start int,limit int)  (r map[int]map[string]strin
 	}
 	return list, e
 }
+
+
+//从ES中获取group列表
+func GetESGroupList(start int,limit int)  (r map[int]map[string]interface{},err error) {
+    group := Service.GroupEs{}
+	ret, _ := group.GetGroupList(start, limit)
+	for _,val := range ret{
+		 equalHImageId,ok := val["equalh_image_id"]
+		if ok{
+			 equalHImageId = equalHImageId.(float64)
+		     imageId := fmt.Sprintf("%.0f",equalHImageId)
+			 imgUrl := GetImgUrl(imageId)
+			 val["equalhImgUrl"] = val["equalh_url"]
+			 if len(imgUrl) > 0{
+				 val["equalhImgUrl"] = imgUrl
+			 }
+		}
+		imgDate,ok := val["img_date"]
+		if ok{
+			imgTime := fmt.Sprintf("%.0f",imgDate.(float64))
+			i, _ := strconv.ParseInt(imgTime, 10, 64)
+			val["img_date_format"] = time.Unix(i,0).Format("2006-01-02 03:04:05")
+		}
+		groupId,ok := val["group_id"]
+		if ok{
+			groupId = fmt.Sprintf("%.0f",groupId.(float64))
+			val["group_id"] = groupId
+		}
+	}
+    return ret,nil
+}
+
 
 //group详情
 func GetGoodsDetailById(groupId int,where string) (list map[string]string, err error) {

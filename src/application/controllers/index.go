@@ -9,7 +9,7 @@ import (
 )
 
 var Limit = 100
-var r  map[int]map[string]string
+var r  map[int]map[string]interface{}
 var e error
 
 func Index(writer http.ResponseWriter, request *http.Request)  {
@@ -26,7 +26,8 @@ func Index(writer http.ResponseWriter, request *http.Request)  {
 	//group list
 	total := logic.GetGroupCount("")
 	if total > 0{
-	    r,e = logic.GetGroupList("", start, Limit)
+		r,e = logic.GetESGroupList( start, Limit)
+	   // r,e = logic.GetGroupList("", start, Limit)
 		if e != nil{
 			SaveErrorLog("index.Index",e)
 			Redirect404(writer,request)
