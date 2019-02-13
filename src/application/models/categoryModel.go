@@ -19,3 +19,9 @@ func GetSubCateGoryData(categoryId,start,limit int) (result map[int]map[string]s
 	return db.GetList(sql)
 }
 
+//获取所有顶级分类
+func GetAllTopCategoryList(start,limit int) (result map[int]map[string]string,err error)  {
+	sql := fmt.Sprintf("SELECT category_id,category_name FROM %s WHERE category_pid=0 GROUP BY category_id ORDER BY id ASC  LIMIT %d,%d",CATEGORY_TABLE,start,limit)
+	return db.GetList(sql)
+}
+

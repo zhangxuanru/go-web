@@ -13,7 +13,6 @@ func GetCateGoryDataById(categoryId int) (r map[string]string, err error) {
 	 return  models.GetCateGoryDataById(categoryId)
 }
 
-
 //获取分类名称数据
 func GetCateGoryById(categoryId int) (r map[string]string, err error) {
 	r, err = GetCateGoryDataById(categoryId)
@@ -24,50 +23,16 @@ func GetCateGoryById(categoryId int) (r map[string]string, err error) {
 	return
 }
 
-
-
-
-
 //根据分类ID获取子分类数据
 func GetSubCateGoryData(categoryId,start,limit int) (result map[int]map[string]string,err error) {
 	result,err = models.GetSubCateGoryData(categoryId,start,limit)
-	if err!=nil{
-		return
-	}
 	return result,err
-
-	//list := make(map[int]map[string]string,limit)
-	//ret  := make(map[int]map[string]string,limit)
-	//var keys []int
-    //for _,item := range result{
-		//categoryId,_:= strconv.Atoi(item["category_id"])
-		//num := Service.GetCategoryGroupTotal(categoryId)
-		//i, _ := strconv.Atoi(num)
-		//if i == 0{
-		//	i = rand.Intn(10)
-		//}
-		//list[categoryId+i] = item
-		//keys = append(keys,i+categoryId)
-	//}
-    //k:=0
-    //for i,val := range keys{
-		//if k >limit{
-		//	break
-		//}
-		//ret[i] = list[val]
-    //	k++
-	//}
-	//
-	//fmt.Println()
-	//fmt.Printf("%+v\r\n",ret)
-    //return ret,nil
-   // return models.GetSubCateGoryData(categoryId,start,limit)
 }
 
-
-
-
-
+//获取所有顶级分类
+func GetAllTopCategoryList(start,limit int)  (result map[int]map[string]string,err error) {
+	 return  models.GetAllTopCategoryList(start, limit)
+}
 
 //栏目详情页推荐group,链接tag,图片推荐  数据
 func GetCateColDetail(categoryId int)  (linkTags,picGeneralize,channelRecommend map[int]map[string]string,err error) {
@@ -96,7 +61,6 @@ func GetCateColDetail(categoryId int)  (linkTags,picGeneralize,channelRecommend 
 	}
 	return
 }
-
 
 //根据分类ID获取group数据
 func GetCateGoryGroupList(categoryId,start,limit int) (ret map[int]map[string]interface{},total string) {
