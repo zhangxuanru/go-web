@@ -31,7 +31,14 @@ func GetSubCateGoryData(categoryId,start,limit int) (result map[int]map[string]s
 
 //获取所有顶级分类
 func GetAllTopCategoryList(start,limit int)  (result map[int]map[string]string,err error) {
-	 return  models.GetAllTopCategoryList(start, limit)
+	 result,err = models.GetAllTopCategoryList(start, limit)
+     for k,item := range result{
+		 item["category_name"] = strings.Replace(item["category_name"],"滚动","",-1)
+		 if item["category_name"] == "全站热点"{
+           delete(result,k)
+		 }
+	 }
+	 return
 }
 
 //栏目详情页推荐group,链接tag,图片推荐  数据

@@ -33,16 +33,32 @@ func GetGroupList(where string,start int,limit int)  (r map[int]map[string]strin
 func GetESGroupList(start int,limit int)  (r map[int]map[string]interface{},err error) {
     group := Service.GroupEs{}
 	ret, _ := group.GetGroupList(start, limit)
+	ret = processEsGroupList(ret)
+    return ret,nil
+}
+
+//从ES中根据one_category获取group列表
+func GetESGroupListByCategory(oneCategoryId,start int,limit int) (r map[int]map[string]interface{},total int64,err error)  {
+	group := Service.GroupEs{
+		 OneCategoryId:oneCategoryId,
+	}
+	ret, total:= group.GetGroupList(start, limit)
+	ret = processEsGroupList(ret)
+	return  ret,total,nil
+}
+
+//处理从ES中获取的group list 列表
+func processEsGroupList(ret map[int]map[string]interface{}) ( map[int]map[string]interface{}) {
 	for _,val := range ret{
-		 equalHImageId,ok := val["equalh_image_id"]
+		equalHImageId,ok := val["equalh_image_id"]
 		if ok{
-			 equalHImageId = equalHImageId.(float64)
-		     imageId := fmt.Sprintf("%.0f",equalHImageId)
-			 imgUrl := GetImgUrl(imageId)
-			 val["equalhImgUrl"] = val["equalh_url"]
-			 if len(imgUrl) > 0{
-				 val["equalhImgUrl"] = imgUrl
-			 }
+			equalHImageId = equalHImageId.(float64)
+			imageId := fmt.Sprintf("%.0f",equalHImageId)
+			imgUrl := GetImgUrl(imageId)
+			val["equalhImgUrl"] = val["equalh_url"]
+			if len(imgUrl) > 0{
+				val["equalhImgUrl"] = imgUrl
+			}
 		}
 		imgDate,ok := val["img_date"]
 		if ok{
@@ -56,7 +72,7 @@ func GetESGroupList(start int,limit int)  (r map[int]map[string]interface{},err 
 			val["group_id"] = groupId
 		}
 	}
-    return ret,nil
+	return ret
 }
 
 

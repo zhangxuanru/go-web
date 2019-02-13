@@ -10,74 +10,22 @@
     <div class="vc-wrap layout" data-reactroot="" data-reactid="1" data-react-checksum="1712345448">
         {{template "header" .}}
         <div class="vc-wrap-content" data-reactid="195">
-            <div class="picrecommend" data-reactid="196">
-               {{ if gt .linkTagsLen 0}}
-                <div class="pro-title" data-reactid="197">
-							<span class="pro-title-txt" data-reactid="198">
-								<a targte="_blank" href="javascript:;" title="热点推荐">热点推荐</a>
-							</span>
-                    <div class="link-wraper" style="margin-left:20px;margin-top:8px;" data-reactid="199">
-                         {{range $i,$v :=.linkTags}}
-                              <a href="{{$v.link}}" target="_blank" data-reactid="200">{{$v.title}}</a>
-                          {{end}}
-                    </div>
-                </div>
-               {{end}}
-
-                <div data-reactid="205">
-                    <div data-reactid="206">
-                        <div class="image-list clearfix " data-reactid="207">
-                            {{range $i,$v := .channelRecommend}}
-                            <article class="asset" style="height:300px;" data-reactid="208">
-                                <section class="image-section" data-reactid="209">
-                                    <a class="search-result-asset-link" href="/group/{{$v.item_id}}"
-                                       target="_blank" data-reactid="210">
-                                        <div class="search-result-img" data-reactid="211">
-                                            <div class="curtains" data-reactid="212">
-                                                <img class="srp-asset-image gallery-image" src="{{$v.src}}" data-reactid="213">
-                                            </div>
-                                        </div>
-                                    </a>
-                                </section>
-                                <section class="event-grid-details group-card" data-reactid="214">
-                                    <div data-reactid="215">
-                                        {{$v.img_date}}
-                                    </div>
-                                </section>
-                                <section class="event-grid-title" title="{{$v.title}}" data-reactid="216">
-                                {{$v.title}}
-                                </section>
-                                <section class="event-grid-count" data-reactid="217">
-                                    <i class="icon iconfont" data-reactid="218">
-                                        
-                                    </i>
-                                    <div data-reactid="219">
-                                        {{$v.group_pics_num}}张
-                                    </div>
-                                </section>
-                            </article>
-                               {{end}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div class="channelv" data-reactid="373">
                 <div class="channelv-nav" id="channelv-nav" data-reactid="374">
                     <div class="channelv-nav-line" data-reactid="375">
                     </div>
-                    {{$catId := .catId}}
-                    {{$pid :=.pid}}
+                    {{$catId := .categoryId}}
+                    {{$cateId := .cateId}}
                     {{$total := .countPage}}
                     <div class="channelv-nav-tag" data-reactid="376">
-                        <div class="channelNav {{if eq $catId $pid}}active{{end}}" data-index=""  data-pid="0"
-                             data-code="" data-name="{{.catName}}滚动" data-path="" data-reactid="377">
-                           <a href="/entertainment/{{.pid}}?pid={{.pid}}"> {{.catName}}滚动</a>
+                        <div class="channelNav {{if eq $catId 0}}active{{end}}" data-index=""  data-pid="0"
+                             data-code="" data-name="滚动 - 全站最新" data-path="" data-reactid="377">
+                           <a href="/editorial/all-update/"> 滚动 - 全站最新</a>
                         </div>
-                        {{range $i,$v :=.subCategoryList }}
-                             <div class="channelNav {{if eq $v.category_id $catId}} active {{end}}" data-index="0" data-id="220589" data-pid="220637"
+                        {{range $i,$v :=.topCategoryList }}
+                             <div class="channelNav {{if eq $v.category_id $cateId}} active {{end}} " data-index="0" data-id="220589" data-pid="220637"
                                   data-code="{{$v.category_id}}" data-name="{{$v.category_name}}" data-path="Sport" data-reactid="{$v.category_id}}">
-                               <a href="/entertainment/{{$v.category_id}}?pid={{$pid}}">  {{$v.category_name}} </a>
+                               <a href="/editorial/all-update/?categoryId={{$v.category_id}}">  {{$v.category_name}} </a>
                              </div>
                         {{end}}
                     </div>
@@ -146,7 +94,6 @@
                         </div>
                     </div>
 
-
                     <div class="mb-30 clearfix" data-reactid="3451">
                      {{if ne $total "0"}}
                         <div style="float:right;" data-reactid="3452">
@@ -165,22 +112,9 @@
                                 </a>
                             </div>
                         </div>
-                        {{end}}
-
+                     {{end}}
                     </div>
-
                 </div>
-            </div>
-
-            <div class="w1200 gen" data-reactid="3462">
-                {{range $i,$v := .picGeneralize}}
-					 <span class="gen-item" data-reactid="3463" style="margin-bottom: 30px; float: left">
-							<a href="/topic/{{$v.item_id}}" target="_blank" data-reactid="3464">
-								<img src="{{$v.src}}" title="{{$v.title}}" data-reactid="3465">
-								<em data-reactid="3466">{{$v.title}}</em>
-							</a>
-						</span>
-                {{end}}
             </div>
         </div>
        {{template "copyright" .}}
@@ -242,7 +176,11 @@
             if (url.indexOf("page") > -1){
                 url =  url.replace("page="+currPage,"page="+page)
             }else{
-                url = url+"&page="+page
+                if (url.indexOf("?") > -1){
+                     url = url+"&page="+page
+                }else{
+                    url = url+"?page="+page
+                }
             }
             window.location.href=url
         }
