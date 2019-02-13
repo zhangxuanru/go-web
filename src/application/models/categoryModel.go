@@ -15,7 +15,7 @@ func GetCateGoryDataById(categoryId int) (r map[string]string, err error)  {
 
 //获取子分类
 func GetSubCateGoryData(categoryId,start,limit int) (result map[int]map[string]string,err error) {
-	sql := fmt.Sprintf("SELECT category_id,category_name FROM %s WHERE category_pid=%d  ORDER BY id ASC LIMIT %d,%d",CATEGORY_TABLE,categoryId,start,limit)
+	sql := fmt.Sprintf("SELECT category_id,category_name FROM %s WHERE category_pid=%d GROUP BY category_id ORDER BY id ASC  LIMIT %d,%d",CATEGORY_TABLE,categoryId,start,limit)
 	return db.GetList(sql)
 }
 

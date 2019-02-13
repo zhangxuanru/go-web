@@ -8,10 +8,10 @@ import (
 )
 
 const BANNER_TABLE  = config.DB_PREFIX+"banner"
-var Fields = []string{"id","type","text","origin_imgurl","link","img_id","link_id","img_width","recommend_type"}
+var GetFields = []string{"id","type","text","origin_imgurl","link","img_id","link_id","img_width","recommend_type"}
 
 func GetBannerList(where string,start int,limit int) (list map[int]map[string]string,err error) {
-	  field := strings.Join(Fields,",")
+	  field := strings.Join(GetFields,",")
 	  if len(where) > 0{
            sql = fmt.Sprintf("SELECT %s FROM %s WHERE %s ORDER BY id DESC LIMIT %d,%d",field,BANNER_TABLE,where,start,limit)
 	  }else{

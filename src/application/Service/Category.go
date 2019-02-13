@@ -76,6 +76,27 @@ func GetGroupDataByGroupIdLine(groupIdLine string)(ret map[int]map[string]interf
 }
 
 
+//根据categoryId去ES中搜索group总数
+func GetCategoryGroupTotal(categoryId int) (num string) {
+	totalKey := fmt.Sprintf("group_category_total_%d",categoryId)
+	count := redis.Get(totalKey)
+	if len(count) > 0{
+		return count
+	}
+	query := elastic.NewBoolQuery().Must(elastic.NewTermQuery("category_id",categoryId))
+	include := elastic.NewFetchSourceContext(true).Include("group_id")
+	result, e := ES.GetEs().Search().Index("group_category").Type("_doc").Query(query).FetchSourceContext(include).Do(context.Background())
+	if e != nil{
+		logger.ErrorLog.Println("GetCategoryGroupTotal ES ERROR:",e)
+		return
+	}
+	total := int(result.TotalHits())
+	num = strconv.Itoa(total)
+	redis.Set(totalKey,num,"EX",600)
+	return num
+}
+
+
 
 
 

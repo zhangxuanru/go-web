@@ -9,6 +9,7 @@ import (
 
 var sql string
 var err error
+var Fields []string
 const GROUP_TABLE  = config.DB_PREFIX+"group"
 const GROUP_DETAIL_TABLE  = config.DB_PREFIX+"group_detail"
 
