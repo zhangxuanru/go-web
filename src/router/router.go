@@ -13,7 +13,7 @@ func InitRouter()  {
       http.HandleFunc("/entertainment/",Call(controllers.Detail))
       http.HandleFunc("/editorialPic/",Call(controllers.PicPageDetail))
       http.HandleFunc("/editorial/all-update/",Call(controllers.Roll))
-	  http.HandleFunc("/editorial-topics",Call(controllers.TopicList))
+	  http.HandleFunc("/editorial-topics/",Call(controllers.TopicList))
 	  http.HandleFunc("/topic/",Call(controllers.TopicDetail))
  }
 

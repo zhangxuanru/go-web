@@ -4676,7 +4676,7 @@ select.form-control option:hover {
 /*页面底部*/
 
 .web-footer-top {
-    padding: 46px 15px;
+    padding: 0px 15px;
     color: #999999;
     line-height: 25px;
     font-size: 14px;
@@ -4816,7 +4816,7 @@ select.form-control option:hover {
 }
 
 .web-footer-bottom {
-    padding: 20px 0 10px;
+    padding: 5px 0 10px;
 }
 
 .footer-link-ewm {
@@ -6666,7 +6666,7 @@ ul.nav-list li a:hover {
 
 .bottom_page {
     min-height: 50px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     clear: both;
 }
 
@@ -8129,7 +8129,7 @@ ul.nav-list li a:hover {
 }
 
 .vc-wrap-content {
-    padding: 15px 24px 30px;
+    padding: 15px 24px 10px;
     background: #fafafa;
 }
 
