@@ -18,9 +18,10 @@ func DisplayLayOut(file string,data interface{},writer http.ResponseWriter)  {
 	file = config.VIEWDIR + file
 	head := config.VIEWDIR+"public/head.html"
 	header := config.VIEWDIR+"public/header.html"
+	searchFrom := config.VIEWDIR+"public/searchFrom.html"
 	footer := config.VIEWDIR+"public/footer.html"
 	copyRight := config.VIEWDIR+"public/copyright.html"
-	must := template.Must(template.ParseFiles(file,head,header,footer,copyRight))
+	must := template.Must(template.ParseFiles(file,head,header,searchFrom,footer,copyRight))
 	must.Funcs(template.FuncMap{"unescaped": unescaped})
 	must.Execute(writer,data)
 }
