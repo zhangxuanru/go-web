@@ -22,7 +22,7 @@ func initTopic(topic *Topic) ( Service.Topic) {
 }
 
 //根据分类获取专题列表
-func GetESTopicListByCategoryId(topic *Topic) (r map[int]map[string]interface{},total int64)  {
+func (topic *Topic) GetESTopicListByCategoryId() (r map[int]map[string]interface{},total int64)  {
 	service := initTopic(topic)
 	ret, total:= service.GetESTopicListByCategoryId()
 	ret = processEsTopicList(ret)
@@ -44,7 +44,6 @@ func processEsTopicList(ret map[int]map[string]interface{}) ( map[int]map[string
 	   publishTime,ok := val["created_time"]
 	   if ok{
 		   pubTime := fmt.Sprintf("%.0f",publishTime.(float64))
-		   fmt.Println("pubTime:",pubTime)
 		   val["publish_date"] =  util.FormattingTimeRubbing(pubTime)
 	   }
 	   topicId,ok := val["topic_id"]
