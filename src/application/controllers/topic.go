@@ -47,8 +47,6 @@ func TopicList(w http.ResponseWriter, r *http.Request)  {
 	DisplayLayOut("topic/list.html",result,w)
 }
 
-
-
 //专题详情页
 func TopicDetail(w http.ResponseWriter,r *http.Request)  {
 	id := strings.Replace(r.URL.Path, "/topic/", "", -1)
@@ -72,19 +70,18 @@ func TopicDetail(w http.ResponseWriter,r *http.Request)  {
 		 Limit:size,
 	}
 	groupList, total := service.GetTopicGroupList()
-	if total > 0{
+	if total > 0 && int(total) > size{
 		sumPage := fmt.Sprintf("%.0f",math.Ceil(float64(total)/float64(size)))
 		pageCount,_ = strconv.Atoi(sumPage)
 	}
 	detail := service.GetTopicDetail()
-
-	fmt.Println()
-	fmt.Printf("%+v",groupList)
-
-
 	result := make(map[string]interface{})
 	result["groupList"] = groupList
 	result["detail"] = detail
+	result["topicId"] = topicId
+	result["page"] = page
+	result["prevPage"] = page-1
+	result["nextPage"] = page + 1
 	result["pageCount"] = pageCount
 	result["total"] = total
 	result["baseUrl"] = config.BASEURL
@@ -93,6 +90,7 @@ func TopicDetail(w http.ResponseWriter,r *http.Request)  {
 	result["description"] = config.DESCRIPTION
 	DisplayLayOut("topic/detail.html",result,w)
 }
+
 
 
 
