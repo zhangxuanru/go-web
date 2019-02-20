@@ -47,7 +47,7 @@
                             </ul>
                         </div>
                         <div class="search-div" data-reactid="175">
-                            <input type="text" class="search-box" placeholder="在本专题内搜索" data-reactid="176" />
+                            <input type="text" class="search-box" value="{{.KeyWord}}" placeholder="在本专题内搜索" data-reactid="176" />
                             <div data-reactid="177">
                                 <i class="icon iconfont icon-search" data-reactid="178"></i>
                             </div>
@@ -99,7 +99,7 @@
                     {{if le .page 1}}
                         <a href="javascript:;" class="pull-left" style="flex:1;max-width:116px;height:40px;line-height:40px;text-align:center;background:rgba(255,255,255,1);border:1px solid #dddddd;font-size:14px;color:#757575;margin-right:24px;" data-reactid="1573">上一页</a>
                       {{else}}
-                        <a href="/topic/{{.topicId}}?page={{.prevPage}}" class="pull-left" style="flex:1;max-width:116px;height:40px;line-height:40px;text-align:center;background:rgba(255,255,255,1);border:1px solid #dddddd;font-size:14px;color:#757575;margin-right:24px;" data-reactid="1573">上一页</a>
+                        <a href="/topic/{{.topicId}}?page={{.prevPage}}&keyword={{.KeyWord}}" class="pull-left" style="flex:1;max-width:116px;height:40px;line-height:40px;text-align:center;background:rgba(255,255,255,1);border:1px solid #dddddd;font-size:14px;color:#757575;margin-right:24px;" data-reactid="1573">上一页</a>
                     {{end}}
                                 <div class="" style="color:#434343;" data-reactid="1574">
                                     <input type="text" id="topic_page" value="{{.page}}" maxlength="4" style="width:70px;height:40px;line-height:40px;text-align:center;border:1px solid #dddddd;font-size:14px;color:#434343;" data-reactid="1575" />
@@ -110,7 +110,7 @@
                                 {{if ge .page .pageCount}}
                                     <a href="javascript:;" class="pull-left" style="flex:1;max-width:116px;height:40px;line-height:40px;text-align:center;background:rgba(255,255,255,1);border:1px solid #dddddd;font-size:14px;color:#757575;margin-left:24px;" data-reactid="1578">下一页</a>
                                 {{else}}
-                                    <a href="/topic/{{.topicId}}?page={{.nextPage}}" class="pull-left" style="flex:1;max-width:116px;height:40px;line-height:40px;text-align:center;background:rgba(255,255,255,1);border:1px solid #dddddd;font-size:14px;color:#757575;margin-left:24px;" data-reactid="1578">下一页</a>
+                                    <a href="/topic/{{.topicId}}?page={{.nextPage}}&keyword={{.KeyWord}}" class="pull-left" style="flex:1;max-width:116px;height:40px;line-height:40px;text-align:center;background:rgba(255,255,255,1);border:1px solid #dddddd;font-size:14px;color:#757575;margin-left:24px;" data-reactid="1578">下一页</a>
                                 {{end}}
                             </div>
                             <!-- react-empty: 1579 -->
@@ -127,6 +127,15 @@
 
 {{template "footer" .}}
 <script src="{{.baseUrl}}/static/js/topic/item.96676b29.js"></script>
+
+<script type="text/javascript">
+ $(".icon-search").click(function () {
+     var keyword = $(".search-box").val();
+     var topicId = {{.topicId}};
+     window.location.href = "/topic/"+topicId+"?keyword="+keyword
+ })
+
+</script>
 
 <style>
     #YSF-BTN-HOLDER {

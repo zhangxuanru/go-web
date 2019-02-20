@@ -1,11 +1,36 @@
 package controllers
 
-import "net/http"
+import (
+	"net/http"
+	"application/logic"
+)
 
-func TopicSearch(w http.ResponseWriter, r *http.Request){}
+var (
+	assign  map[string]interface{}
+	search  logic.Search
+	result  map[int]map[string]interface{}
+	totalHit int64
+	KeyWord string
+)
 
-func GroupSearch(w http.ResponseWriter, r *http.Request){}
+func initSearch() (logic.Search)  {
+	return  logic.Search{
+		Keyword:KeyWord,
+		TopicId:101301,
+		Start:0,
+		Size:10,
+	}
+}
 
-func Search(w http.ResponseWriter, r *http.Request) {}
+
+func TopicSearch(w http.ResponseWriter, r *http.Request){
+
+}
+
+
+func Search(w http.ResponseWriter, r *http.Request) {
+
+}
+
 
 

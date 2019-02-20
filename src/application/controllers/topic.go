@@ -10,6 +10,14 @@ import (
 	"strings"
 )
 
+var (
+	topicId int
+	Id string
+	page int
+	pageCount int
+	groupList map[int]map[string]interface{}
+	total int64
+)
 //专题列表页
 func TopicList(w http.ResponseWriter, r *http.Request)  {
 	result := make(map[string]interface{})
@@ -49,27 +57,34 @@ func TopicList(w http.ResponseWriter, r *http.Request)  {
 
 //专题详情页
 func TopicDetail(w http.ResponseWriter,r *http.Request)  {
-	id := strings.Replace(r.URL.Path, "/topic/", "", -1)
-	if len(id) == 0{
+	if Id = strings.Replace(r.URL.Path, "/topic/", "", -1);len(Id) == 0{
 		Redirect404(w,r)
 		return
 	}
-	topicId, _ := strconv.Atoi(id)
-	if topicId == 0 {
+	if topicId, _ = strconv.Atoi(Id);topicId == 0{
 		Redirect404(w,r)
 		return
 	}
-	page,_ := strconv.Atoi(r.FormValue("page"))
-	if page == 0{
+	if page,_ = strconv.Atoi(r.FormValue("page"));page == 0{
 		page = 1
 	}
-	pageCount := 0
+	KeyWord = strings.TrimSpace(r.FormValue("keyword"))
 	service := logic.Topic{
-         TopicId:topicId,
-		 Start:(page-1)*size,
-		 Limit:size,
+		TopicId:topicId,
+		Start:(page-1)*size,
+		Limit:size,
 	}
-	groupList, total := service.GetTopicGroupList()
+	if len(KeyWord) > 0{
+		search = logic.Search{
+			Keyword:KeyWord,
+			TopicId:topicId,
+			Start:(page-1)*size,
+			Size:size,
+		}
+		groupList, total = search.TopicGroupSearch()
+	}else{
+		groupList, total = service.GetTopicGroupList()
+	}
 	if total > 0 && int(total) > size{
 		sumPage := fmt.Sprintf("%.0f",math.Ceil(float64(total)/float64(size)))
 		pageCount,_ = strconv.Atoi(sumPage)
@@ -77,6 +92,7 @@ func TopicDetail(w http.ResponseWriter,r *http.Request)  {
 	detail := service.GetTopicDetail()
 	result := make(map[string]interface{})
 	result["groupList"] = groupList
+	result["KeyWord"] = KeyWord
 	result["detail"] = detail
 	result["topicId"] = topicId
 	result["page"] = page
@@ -90,9 +106,6 @@ func TopicDetail(w http.ResponseWriter,r *http.Request)  {
 	result["description"] = config.DESCRIPTION
 	DisplayLayOut("topic/detail.html",result,w)
 }
-
-
-
 
 
 
