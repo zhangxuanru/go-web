@@ -61,9 +61,34 @@ func (search *Search) TopicGroupSearch() (result map[int]map[string]interface{},
 }
 
 
-func (search *Search) Search()  {
-
+//在group中搜索
+func (search *Search) GroupSearch()  (result map[int]map[string]interface{},total int64) {
+	if utf8.RuneCountInString(search.Keyword) < 4{
+		matchPhraseQuery = elastic.NewMatchPhraseQuery("title",search.Keyword)
+		querys = append(querys,matchPhraseQuery)
+	}else{
+		matchQuery = elastic.NewMatchQuery("title",search.Keyword)
+		querys = append(querys,matchQuery)
+	}
+	query = elastic.NewBoolQuery().Must(querys...)
+	include := elastic.NewFetchSourceContext(true).Include("group_id","title","group_pics_num","img_date","equalw_url","equalw_url_imgid","equalh_url","equalh_image_id")
+	searchResult,err = ES.GetEs().Search().Index("group").Type("_doc").Query(query).FetchSourceContext(include).From(search.Start).Size(search.Size).Sort("img_date",false).Do(context.Background())
+	if err != nil{
+		logger.ErrorLog.Println("GroupSearch ES ERROR:",err)
+		return
+	}
+	totalHits = searchResult.TotalHits()
+	result = make(map[int]map[string]interface{},search.Size)
+	for k, hit := range searchResult.Hits.Hits {
+		item := make(map[string]interface{})
+		if e := json.Unmarshal(*hit.Source, &item);e != nil{
+			continue
+		}
+		result[k] = item
+	}
+	return result,totalHits
 }
+
 
 
 

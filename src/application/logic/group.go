@@ -50,26 +50,21 @@ func GetESGroupListByCategory(oneCategoryId,start int,limit int) (r map[int]map[
 //处理从ES中获取的group list 列表
 func processEsGroupList(ret map[int]map[string]interface{}) ( map[int]map[string]interface{}) {
 	for _,val := range ret{
-		equalHImageId,ok := val["equalh_image_id"]
-		if ok{
-			equalHImageId = equalHImageId.(float64)
-			imageId := fmt.Sprintf("%.0f",equalHImageId)
+		if equalHImageId,ok := val["equalh_image_id"];ok{
+			imageId := fmt.Sprintf("%.0f",equalHImageId.(float64))
 			imgUrl := GetImgUrl(imageId)
 			val["equalhImgUrl"] = val["equalh_url"]
 			if len(imgUrl) > 0{
 				val["equalhImgUrl"] = imgUrl
 			}
 		}
-		imgDate,ok := val["img_date"]
-		if ok{
+		if imgDate,ok := val["img_date"];ok{
 			imgTime := fmt.Sprintf("%.0f",imgDate.(float64))
 			i, _ := strconv.ParseInt(imgTime, 10, 64)
 			val["img_date_format"] = time.Unix(i,0).Format("2006-01-02 03:04:05")
 		}
-		groupId,ok := val["group_id"]
-		if ok{
-			groupId = fmt.Sprintf("%.0f",groupId.(float64))
-			val["group_id"] = groupId
+		if groupId,ok := val["group_id"];ok{
+			val["group_id"] = fmt.Sprintf("%.0f",groupId.(float64))
 		}
 	}
 	return ret

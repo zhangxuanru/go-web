@@ -68,15 +68,15 @@ func TopicDetail(w http.ResponseWriter,r *http.Request)  {
 	if page,_ = strconv.Atoi(r.FormValue("page"));page == 0{
 		page = 1
 	}
-	KeyWord = strings.TrimSpace(r.FormValue("keyword"))
+	keyWord = strings.TrimSpace(r.FormValue("keyword"))
 	service := logic.Topic{
 		TopicId:topicId,
 		Start:(page-1)*size,
 		Limit:size,
 	}
-	if len(KeyWord) > 0{
+	if len(keyWord) > 0{
 		search = logic.Search{
-			Keyword:KeyWord,
+			Keyword:keyWord,
 			TopicId:topicId,
 			Start:(page-1)*size,
 			Size:size,
@@ -92,7 +92,7 @@ func TopicDetail(w http.ResponseWriter,r *http.Request)  {
 	detail := service.GetTopicDetail()
 	result := make(map[string]interface{})
 	result["groupList"] = groupList
-	result["KeyWord"] = KeyWord
+	result["KeyWord"] = keyWord
 	result["detail"] = detail
 	result["topicId"] = topicId
 	result["page"] = page

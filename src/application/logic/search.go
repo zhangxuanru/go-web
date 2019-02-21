@@ -22,10 +22,21 @@ func initSearch(search *Search) (service  Service.Search) {
 }
 
 
-//在指定的topic内搜索group，根据topic_id
+//在指定的topic内搜索group
 func (search *Search) TopicGroupSearch() (result map[int]map[string]interface{},total int64){
 	service := initSearch(search)
 	result, total = service.TopicGroupSearch()
 	result = processEsTopicGroup(result)
 	return result,total
 }
+
+
+//搜索group
+func (search *Search) GroupSearch() (result map[int]map[string]interface{},total int64) {
+	service := initSearch(search)
+	result,total = service.GroupSearch()
+	result = processEsGroupList(result)
+	return
+}
+
+
