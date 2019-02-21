@@ -23,11 +23,7 @@ func initSearch() (logic.Search)  {
 }
 
 
-func TopicSearch(w http.ResponseWriter, r *http.Request){
-
-}
-
-
+//根据关键字搜索
 func Search(w http.ResponseWriter, r *http.Request) {
 
 }

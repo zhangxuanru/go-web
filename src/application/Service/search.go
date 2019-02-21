@@ -6,6 +6,7 @@ import (
 	"context"
 	"libary/logger"
 	"encoding/json"
+	"unicode/utf8"
 )
 
 type Search struct {
@@ -18,17 +19,29 @@ type Search struct {
 var(
 	searchResult *elastic.SearchResult
 	result map[int]map[string]interface{}
+	querys []elastic.Query
+	query elastic.Query
+	matchQuery *elastic.MatchQuery
+	matchPhraseQuery *elastic.MatchPhraseQuery
+	termQuery *elastic.TermQuery
 	err error
 	totalHits int64
 )
 
-func (search *Search) TopicSearch()  {
-
-}
-
-//在指定的topic内搜索group，根据topic_id
+//在指定的topic内搜索group
 func (search *Search) TopicGroupSearch() (result map[int]map[string]interface{},total int64) {
-	query:= elastic.NewBoolQuery().Must(elastic.NewTermQuery("topic_id",search.TopicId),elastic.NewMatchQuery("title",search.Keyword))
+	if utf8.RuneCountInString(search.Keyword) < 4{
+		matchPhraseQuery = elastic.NewMatchPhraseQuery("title",search.Keyword)
+		querys = append(querys,matchPhraseQuery)
+	}else{
+		matchQuery = elastic.NewMatchQuery("title",search.Keyword)
+		querys = append(querys,matchQuery)
+	}
+	if search.TopicId > 0{
+		termQuery = elastic.NewTermQuery("topic_id",search.TopicId)
+		querys = append(querys,termQuery)
+	}
+    query = elastic.NewBoolQuery().Must(querys...)
 	include := elastic.NewFetchSourceContext(true).Include("group_id","title","equalw_url","equalw_url_imageid","group_pics_num","img_date")
 	searchResult,err = ES.GetEs().Search().Index("topic_group").Type("_doc").Query(query).FetchSourceContext(include).From(search.Start).Size(search.Size).Sort("img_date",false).Do(context.Background())
 	if err != nil{
@@ -48,11 +61,10 @@ func (search *Search) TopicGroupSearch() (result map[int]map[string]interface{},
 }
 
 
-
-
 func (search *Search) Search()  {
 
 }
+
 
 
 

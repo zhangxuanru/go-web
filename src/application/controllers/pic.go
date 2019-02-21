@@ -34,11 +34,14 @@ func PicPageDetail(w http.ResponseWriter, r *http.Request)  {
 	var caption template.HTML
 	rowDetail, _ := logic.GetPicDetailByPicId(picId)
 	if len(rowDetail) > 0 {
+		replace := strings.NewReplacer("\"","","<br/>","","<br>","")
+		rowDetail[0]["caption"] = replace.Replace(rowDetail[0]["caption"])
 		caption = template.HTML(rowDetail[0]["caption"])
 	}
 	if strings.Contains(row[0]["title_old"],"<br/>"){
 		split := strings.Split(row[0]["title_old"], "<br/>")
-		row[0]["title"] = split[0]
+		replace := strings.NewReplacer("\"","","<br/>","","<br>","")
+		row[0]["title"] = replace.Replace(split[1])
 	}
 
 	//group 信息
