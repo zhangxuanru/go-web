@@ -6,6 +6,7 @@ import (
 
 type Search struct {
 	Keyword string
+	UniqueTopic bool
 	TopicId int
 	Start int
 	Size int
@@ -14,6 +15,7 @@ type Search struct {
 func initSearch(search *Search) (service  Service.Search) {
 	service = Service.Search{
 		 Keyword:search.Keyword,
+		 UniqueTopic:search.UniqueTopic,
 		 Start:search.Start,
 		 Size:search.Size,
 		 TopicId:search.TopicId,
@@ -28,6 +30,14 @@ func (search *Search) TopicGroupSearch() (result map[int]map[string]interface{},
 	result, total = service.TopicGroupSearch()
 	result = processEsTopicGroup(result)
 	return result,total
+}
+
+//搜索topic
+func (search *Search) TopicSearch() (result map[int]map[string]interface{},total int64){
+	service := initSearch(search)
+	result,total = service.TopicSearch()
+
+	return
 }
 
 

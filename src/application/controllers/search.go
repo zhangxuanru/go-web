@@ -7,6 +7,7 @@ import (
 	"strconv"
 	"fmt"
 	"math"
+	"config"
 )
 
 var (
@@ -16,13 +17,17 @@ var (
 	totalHit int64
 	searchGroupList  map[int]map[string]interface{}
 	groupTotalHit int64
+	topicTotalHit int64
 	groupPageCount int
 	keyWord string
+	searchType string
+	link string
 )
 
 func initSearch(keyWord string,start,size int) (logic.Search)  {
 	return  logic.Search{
 		Keyword:keyWord,
+		UniqueTopic:true,
 		Start:start,
 		Size:size,
 	}
@@ -33,34 +38,45 @@ func initSearch(keyWord string,start,size int) (logic.Search)  {
 func Search(w http.ResponseWriter, r *http.Request) {
 	assign = make(map[string]interface{})
 	keyWord = strings.TrimSpace(r.FormValue("keyword"))
+	if searchType = strings.TrimSpace(r.FormValue("searchType"));searchType==""{
+		searchType = "topic"
+	}
 	if page,_ = strconv.Atoi(r.FormValue("page"));page == 0{
 		page = 1
 	}
-	service := initSearch(keyWord, (page-1)*size, size)
-	//topic
-	result, total = service.TopicGroupSearch()
-	//group
-	searchGroupList,groupTotalHit = service.GroupSearch()
-
+	 service := initSearch(keyWord, (page-1)*size, size)
+	 //topic
+	 result, topicTotalHit = service.TopicSearch()
+	 //group
+	 groupList,groupTotalHit = service.GroupSearch()
+	 total = topicTotalHit
+	 link = "topic"
+	 totalHit = groupTotalHit + topicTotalHit
+	 if searchType != "topic"{
+		  result = groupList
+		  total = groupTotalHit
+		  link = "group"
+	 }
 	if total > 0 && int(total) > size{
 		sumPage := fmt.Sprintf("%.0f",math.Ceil(float64(total)/float64(size)))
 		pageCount,_ = strconv.Atoi(sumPage)
 	}
-	if groupTotalHit > 0 && int(groupTotalHit) > size{
-		sumPage := fmt.Sprintf("%.0f",math.Ceil(float64(groupTotalHit)/float64(size)))
-		groupPageCount,_ = strconv.Atoi(sumPage)
-	}
-	assign["groupList"] = searchGroupList
-	assign["groupTotalHit"] = groupTotalHit
-	assign["topicList"] = result
-    assign["topicTotal"] = total
+	assign["List"] = result
+    assign["total"] = total
+    assign["topicTotalHit"] = topicTotalHit
+    assign["groupTotalHit"] = groupTotalHit
+    assign["link"] = link
+    assign["totalHit"] = totalHit
     assign["page"] = page
+    assign["searchType"] = searchType
     assign["topicPageCount"] = pageCount
     assign["groupPageCount"] = groupPageCount
+    assign["keyWord"] = keyWord
+	assign["title"] = keyWord +" 搜索结果 - 编辑图片"
+	assign["keywords"] = keyWord + "  " + config.KEYWORDS
+	assign["description"] = keyWord +" " + config.DESCRIPTION
     DisplayLayOut("search/index.html",assign,w)
 }
-
-
 
 
 

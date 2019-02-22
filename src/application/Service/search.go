@@ -11,6 +11,7 @@ import (
 
 type Search struct {
      Keyword string
+	 UniqueTopic bool
      TopicId int
      Start int
      Size int
@@ -90,6 +91,11 @@ func (search *Search) GroupSearch()  (result map[int]map[string]interface{},tota
 }
 
 
+//在topic中搜索
+func (search *Search) TopicSearch() (result map[int]map[string]interface{},total int64) {
+
+	return
+}
 
 
 

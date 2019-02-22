@@ -34,6 +34,13 @@
          }
          window.location.href="/?page="+(currPage-1)
      })
+
+
+     $(".search-btn").click(function () {
+         var keyword = $(".searchVal").val();
+         window.location.href = "/search/?keyword="+keyword
+     })
+
  </script>
 
 <div id="@@_sense_root">
