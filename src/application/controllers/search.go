@@ -46,7 +46,7 @@ func Search(w http.ResponseWriter, r *http.Request) {
 	}
 	 service := initSearch(keyWord, (page-1)*size, size)
 	 //topic
-	 result, topicTotalHit = service.TopicSearch()
+	 result, topicTotalHit = service.GetTopicSearch()
 	 //group
 	 groupList,groupTotalHit = service.GroupSearch()
 	 total = topicTotalHit
@@ -68,9 +68,10 @@ func Search(w http.ResponseWriter, r *http.Request) {
     assign["link"] = link
     assign["totalHit"] = totalHit
     assign["page"] = page
+    assign["prevPage"] = page-1
+    assign["nextPage"] = page+1
     assign["searchType"] = searchType
-    assign["topicPageCount"] = pageCount
-    assign["groupPageCount"] = groupPageCount
+    assign["pageCount"] = pageCount
     assign["keyWord"] = keyWord
 	assign["title"] = keyWord +" 搜索结果 - 编辑图片"
 	assign["keywords"] = keyWord + "  " + config.KEYWORDS

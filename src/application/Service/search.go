@@ -19,6 +19,8 @@ type Search struct {
 
 var(
 	searchResult *elastic.SearchResult
+	searchService  *elastic.SearchService
+	searchFields []string
 	result map[int]map[string]interface{}
 	querys []elastic.Query
 	query elastic.Query
@@ -31,6 +33,7 @@ var(
 
 //在指定的topic内搜索group
 func (search *Search) TopicGroupSearch() (result map[int]map[string]interface{},total int64) {
+	querys = querys[:0]
 	if utf8.RuneCountInString(search.Keyword) < 4{
 		matchPhraseQuery = elastic.NewMatchPhraseQuery("title",search.Keyword)
 		querys = append(querys,matchPhraseQuery)
@@ -64,6 +67,7 @@ func (search *Search) TopicGroupSearch() (result map[int]map[string]interface{},
 
 //在group中搜索
 func (search *Search) GroupSearch()  (result map[int]map[string]interface{},total int64) {
+	querys = querys[:0]
 	if utf8.RuneCountInString(search.Keyword) < 4{
 		matchPhraseQuery = elastic.NewMatchPhraseQuery("title",search.Keyword)
 		querys = append(querys,matchPhraseQuery)
@@ -91,10 +95,40 @@ func (search *Search) GroupSearch()  (result map[int]map[string]interface{},tota
 }
 
 
-//在topic中搜索
-func (search *Search) TopicSearch() (result map[int]map[string]interface{},total int64) {
 
-	return
+//根据关键字在topic_group中搜索
+func (search *Search) GetTopicSearch() (result map[int]map[string]interface{},total int64) {
+	querys = querys[:0]
+	searchFields = []string{"topic_id","group_id","title","equalw_url","equalw_url_imageid","group_pics_num","img_date"}
+	searchService = ES.GetEs().Search().Index("topic_group").Type("_doc").From(search.Start).Size(search.Size).
+		Sort("img_date",false)
+	if utf8.RuneCountInString(search.Keyword) < 4{
+		matchPhraseQuery = elastic.NewMatchPhraseQuery("title",search.Keyword)
+		querys = append(querys,matchPhraseQuery)
+	}else{
+		matchQuery = elastic.NewMatchQuery("title",search.Keyword)
+		querys = append(querys,matchQuery)
+	}
+	query = elastic.NewBoolQuery().Must(querys...)
+	include := elastic.NewFetchSourceContext(true).Include(searchFields...)
+	searchResult,err = searchService.Query(query).FetchSourceContext(include).Collapse(elastic.NewCollapseBuilder("topic_id")).Do(context.Background())
+	if err != nil{
+		logger.ErrorLog.Println("GetTopicSearch ES ERROR:",err)
+		return
+	}
+	totalHits = searchResult.TotalHits()
+	result = make(map[int]map[string]interface{},search.Size)
+	for k, hit := range searchResult.Hits.Hits {
+		item := make(map[string]interface{})
+		if e := json.Unmarshal(*hit.Source, &item);e != nil{
+			continue
+		}
+		result[k] = item
+	}
+	if len(result) < int(totalHits){
+		 totalHits = int64(len(result))
+	}
+	return result,totalHits
 }
 
 

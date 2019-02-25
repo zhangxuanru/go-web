@@ -176,25 +176,35 @@
                             </div>
                         </div>
 
-                        <div class="pagination_container clear" data-reactid="275">
+                        {{if gt .pageCount 0}}
+                            <div class="pagination_container clear" data-reactid="275">
                             <div>
                                 <div class="clear ml-20 l5 mt-8" style="display: flex; justify-content: center; height: 40px; line-height: 40px; margin: 36px 20px 36px 0px;">
-                                    <a href="javascript:;" class="pull-left" style="flex: 1 1 0%; max-width: 116px; height: 40px; line-height: 40px; text-align: center; background: rgb(255, 255, 255); border: 1px solid rgb(221, 221, 221); font-size: 14px; color: rgb(117, 117, 117); margin-right: 24px;">上一页</a>
+                                  {{if le .page 1}}
+                                      <a href="javascript:;" class="pull-left" style="flex: 1 1 0%; max-width: 116px; height: 40px; line-height: 40px; text-align: center; background: rgb(255, 255, 255); border: 1px solid rgb(221, 221, 221); font-size: 14px; color: rgb(117, 117, 117); margin-right: 24px;">上一页</a>
+                                  {{else}}
+                                      <a href="/search/?keyword={{.keyWord}}&searchType={{.searchType}}&page={{.prevPage}}" class="pull-left" style="flex: 1 1 0%; max-width: 116px; height: 40px; line-height: 40px; text-align: center; background: rgb(255, 255, 255); border: 1px solid rgb(221, 221, 221); font-size: 14px; color: rgb(117, 117, 117); margin-right: 24px;">上一页</a>
+                                  {{end}}
+
                                     <div class="" style="color: rgb(67, 67, 67);">
-                                        <input type="text" id="bottom_pagination" value="1" maxlength="4" style="width: 70px; height: 40px; line-height: 40px; text-align: center; border: 1px solid rgb(221, 221, 221); font-size: 14px; color: rgb(67, 67, 67);" />
+                                        <input type="text" id="bottom_pagination" value="{{.page}}" maxlength="4" style="width: 70px; height: 40px; line-height: 40px; text-align: center; border: 1px solid rgb(221, 221, 221); font-size: 14px; color: rgb(67, 67, 67);" />
                                         <samp>&nbsp;/&nbsp;</samp>
-                                        <!-- react-text: 21288 -->4
+                                        <!-- react-text: 21288 -->{{.pageCount}}
                                         <!-- /react-text -->
                                     </div>
-                                    <a href="javascript:;" class="pull-left" style="flex: 1 1 0%; max-width: 116px; height: 40px; line-height: 40px; text-align: center; background: rgb(255, 255, 255); border: 1px solid rgb(221, 221, 221); font-size: 14px; color: rgb(117, 117, 117); margin-left: 24px;">下一页</a>
+                                    {{if ge .page .pageCount}}
+                                        <a href="javascript:;" class="pull-left" style="flex: 1 1 0%; max-width: 116px; height: 40px; line-height: 40px; text-align: center; background: rgb(255, 255, 255); border: 1px solid rgb(221, 221, 221); font-size: 14px; color: rgb(117, 117, 117); margin-left: 24px;">下一页</a>
+                                      {{else}}
+                                        <a href="/search/?keyword={{.keyWord}}&searchType={{.searchType}}&page={{.nextPage}}" class="pull-left" style="flex: 1 1 0%; max-width: 116px; height: 40px; line-height: 40px; text-align: center; background: rgb(255, 255, 255); border: 1px solid rgb(221, 221, 221); font-size: 14px; color: rgb(117, 117, 117); margin-left: 24px;">下一页</a>
+                                    {{end}}
+
                                 </div>
                                 <!-- react-empty: 21290 -->
                             </div>
                         </div>
+                        {{end}}
 
                     </div>
-
-
                 </div>
             </div>
         </div>

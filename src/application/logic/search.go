@@ -32,11 +32,11 @@ func (search *Search) TopicGroupSearch() (result map[int]map[string]interface{},
 	return result,total
 }
 
-//搜索topic
-func (search *Search) TopicSearch() (result map[int]map[string]interface{},total int64){
+//根据关键字 搜索topic，
+func (search *Search) GetTopicSearch() (result map[int]map[string]interface{},total int64){
 	service := initSearch(search)
-	result,total = service.TopicSearch()
-
+	result,total = service.GetTopicSearch()
+	result = processEsTopicList(result)
 	return
 }
 
