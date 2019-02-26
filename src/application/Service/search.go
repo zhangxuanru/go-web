@@ -12,6 +12,7 @@ import (
 type Search struct {
      Keyword string
 	 UniqueTopic bool
+	 Phrase bool
      TopicId int
      Start int
      Size int
@@ -68,7 +69,7 @@ func (search *Search) TopicGroupSearch() (result map[int]map[string]interface{},
 //在group中搜索
 func (search *Search) GroupSearch()  (result map[int]map[string]interface{},total int64) {
 	querys = querys[:0]
-	if utf8.RuneCountInString(search.Keyword) < 4{
+	if utf8.RuneCountInString(search.Keyword) < 4 || search.Phrase == true{
 		matchPhraseQuery = elastic.NewMatchPhraseQuery("title",search.Keyword)
 		querys = append(querys,matchPhraseQuery)
 	}else{
@@ -102,7 +103,7 @@ func (search *Search) GetTopicSearch() (result map[int]map[string]interface{},to
 	searchFields = []string{"topic_id","group_id","title","equalw_url","equalw_url_imageid","group_pics_num","img_date"}
 	searchService = ES.GetEs().Search().Index("topic_group").Type("_doc").From(search.Start).Size(search.Size).
 		Sort("img_date",false)
-	if utf8.RuneCountInString(search.Keyword) < 4{
+	if utf8.RuneCountInString(search.Keyword) < 4 || search.Phrase == true{
 		matchPhraseQuery = elastic.NewMatchPhraseQuery("title",search.Keyword)
 		querys = append(querys,matchPhraseQuery)
 	}else{
@@ -132,4 +133,60 @@ func (search *Search) GetTopicSearch() (result map[int]map[string]interface{},to
 }
 
 
+//搜索框关键字自动补全
+func (search *Search) CompletionData() (result map[string]string) {
+	groupSuggestName := "group_completion"
+	topicSuggestName := "topic_completion"
+	result = search.GetCompletionData("group",groupSuggestName,"title_completion")
+	topicResult := search.GetCompletionData("topic",topicSuggestName,"title_completion")
+	for id,text := range topicResult{
+		result[id] = text
+	}
+	if len(result) > search.Size{
+		ret,i := make(map[string]string),0
+		for key,val := range result{
+			if i >= search.Size{
+				break
+			}
+			ret[key] = val
+			i++
+		}
+        return  ret
+	}
+	return result
+}
+
+
+//获取自动补全数据
+func (search *Search) GetCompletionData(index,suggestName,Field string)(result map[string]string) {
+	result = make(map[string]string)
+	searchResult,err = search.getCompletionService(index,suggestName,Field)
+	if err != nil{
+		logger.ErrorLog.Println("CompletionData ES ERROR:",err)
+		return
+	}
+	searchSuggest := searchResult.Suggest
+	if len(searchSuggest) == 0{
+		return
+	}
+	for _,v := range searchSuggest[suggestName]{
+		for _,val := range v.Options{
+			result[val.Id] = val.Text
+		}
+	}
+	return result
+}
+
+
+
+//获取自动补全服务
+func (search *Search) getCompletionService(index,suggestName,Field string) (searchResult *elastic.SearchResult,err error) {
+	completionSuggester := elastic.NewCompletionSuggester(suggestName).Text(search.Keyword).Field(Field)
+	searchResult,err = ES.GetEs().Search().Index(index).Suggester(completionSuggester).From(search.Start).Size(search.Size).Do(context.Background())
+	if err != nil{
+		logger.ErrorLog.Println("CompletionData ES ERROR:",err)
+		return
+	}
+	return  searchResult,err
+}
 

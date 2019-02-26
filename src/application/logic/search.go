@@ -7,6 +7,7 @@ import (
 type Search struct {
 	Keyword string
 	UniqueTopic bool
+	Phrase bool
 	TopicId int
 	Start int
 	Size int
@@ -16,6 +17,7 @@ func initSearch(search *Search) (service  Service.Search) {
 	service = Service.Search{
 		 Keyword:search.Keyword,
 		 UniqueTopic:search.UniqueTopic,
+		 Phrase:search.Phrase,
 		 Start:search.Start,
 		 Size:search.Size,
 		 TopicId:search.TopicId,
@@ -48,5 +50,19 @@ func (search *Search) GroupSearch() (result map[int]map[string]interface{},total
 	result = processEsGroupList(result)
 	return
 }
+
+
+//搜索框关键字自动补全
+func CompletionData(keyWord string) (result map[string]string) {
+	 search := Search{
+	 	Keyword:keyWord,
+	 	Size:10,
+	 	Start:0,
+	 }
+	service := initSearch(&search)
+	result = service.CompletionData()
+	return
+}
+
 
 

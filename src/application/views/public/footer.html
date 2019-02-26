@@ -41,6 +41,41 @@
          window.location.href = "/search/?keyword="+keyword
      })
 
+     //搜索自动提示
+     $(".searchVal").on('input',function () {
+         var keyWord = $(".searchVal").val()
+         if (keyWord.length > 0){
+             $.ajax({
+                 type: "GET",
+                 dataType: 'json',
+                 url: "/completion/?keyword="+keyWord,
+                 cache: false,
+                success: function (data) {
+                     if(data.code == "200"){
+                        var html = ``;
+                        $.each(data.data,function (key,val) {
+                             html+=` <li class="completionKey"><a href="javascript:void(0);" value="${val}">${val}</a></li>`;
+                        })
+                         if (html.length > 0){
+                             $(".suggestions_list").removeClass("hide")
+                             $(".suggestions_list").html(html)
+                         }else{
+                             $(".suggestions_list").addClass("hide")
+                             $(".suggestions_list").html('')
+                         }
+                     }
+                 }
+             })
+         }
+     })
+
+     $(".suggestions_list").on("click","li",function () {
+         var text = $(this).text()
+         if(text.length > 0){
+              window.location.href = "/search/?keyword="+text+"&phrase=1&searchType=group"
+         }
+     })
+
  </script>
 
 <div id="@@_sense_root">
