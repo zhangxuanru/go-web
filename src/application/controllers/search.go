@@ -68,6 +68,7 @@ func Search(w http.ResponseWriter, r *http.Request) {
 		sumPage := fmt.Sprintf("%.0f",math.Ceil(float64(total)/float64(size)))
 		pageCount,_ = strconv.Atoi(sumPage)
 	}
+	assign["Phrase"] = Phrase
 	assign["List"] = result
     assign["total"] = total
     assign["topicTotalHit"] = topicTotalHit

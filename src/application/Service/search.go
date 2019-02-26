@@ -97,12 +97,12 @@ func (search *Search) GroupSearch()  (result map[int]map[string]interface{},tota
 
 
 
-//根据关键字在topic_group中搜索
+//根据关键字在topic中搜索
 func (search *Search) GetTopicSearch() (result map[int]map[string]interface{},total int64) {
 	querys = querys[:0]
-	searchFields = []string{"topic_id","group_id","title","equalw_url","equalw_url_imageid","group_pics_num","img_date"}
-	searchService = ES.GetEs().Search().Index("topic_group").Type("_doc").From(search.Start).Size(search.Size).
-		Sort("img_date",false)
+	searchFields = []string{"topic_id","title","image_id","equalw_url","equalh_url","publish_time","created_time"}
+	searchService = ES.GetEs().Search().Index("topic").Type("_doc").From(search.Start).Size(search.Size).
+		Sort("created_time",false)
 	if utf8.RuneCountInString(search.Keyword) < 4 || search.Phrase == true{
 		matchPhraseQuery = elastic.NewMatchPhraseQuery("title",search.Keyword)
 		querys = append(querys,matchPhraseQuery)
@@ -112,7 +112,7 @@ func (search *Search) GetTopicSearch() (result map[int]map[string]interface{},to
 	}
 	query = elastic.NewBoolQuery().Must(querys...)
 	include := elastic.NewFetchSourceContext(true).Include(searchFields...)
-	searchResult,err = searchService.Query(query).FetchSourceContext(include).Collapse(elastic.NewCollapseBuilder("topic_id")).Do(context.Background())
+	searchResult,err = searchService.Query(query).FetchSourceContext(include).Do(context.Background())
 	if err != nil{
 		logger.ErrorLog.Println("GetTopicSearch ES ERROR:",err)
 		return

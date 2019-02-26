@@ -19,57 +19,6 @@
                                 <!-- /react-text -->
                                 <i class="iconfont" data-reactid="205"></i>
                             </div>
-                            <div class="title" data-reactid="206">
-                                <!-- react-text: 207 -->国内
-                                <!-- /react-text -->
-                            </div>
-                            <div class="title" data-reactid="208">
-                                <!-- react-text: 209 -->国际
-                                <!-- /react-text -->
-                            </div>
-                            <div class="title" data-reactid="210">
-                                <!-- react-text: 211 -->体育
-                                <!-- /react-text -->
-                            </div>
-                            <div class="title" data-reactid="212">
-                                <!-- react-text: 213 -->娱乐
-                                <!-- /react-text -->
-                            </div>
-                            <div class="title" data-reactid="214">
-                                <!-- react-text: 215 -->时尚
-                                <!-- /react-text -->
-                            </div>
-                            <div class="title" data-reactid="216">
-                                <!-- react-text: 217 -->历史
-                                <!-- /react-text -->
-                            </div>
-                            <div class="title more" data-reactid="218">
-                                <!-- react-text: 219 -->更多
-                                <!-- /react-text -->
-                                <div class="hidden_data" data-reactid="220">
-                                    <div class="title" data-reactid="221">
-                                        财经
-                                    </div>
-                                    <div class="title" data-reactid="222">
-                                        漫画
-                                    </div>
-                                    <div class="title" data-reactid="223">
-                                        图表
-                                    </div>
-                                    <div class="title" data-reactid="224">
-                                        插图
-                                    </div>
-                                    <div class="title" data-reactid="225">
-                                        旅游
-                                    </div>
-                                    <div class="title" data-reactid="226">
-                                        肖像
-                                    </div>
-                                    <div class="title" data-reactid="227">
-                                        故事
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -160,12 +109,15 @@
                                         </section>
                                         <section class="event-grid-count">
                                             <i class="icon iconfont"></i>
+                                            {{if  ne $searchType "topic"}}
                                             <div>
                                                 <!-- react-text: 19894 -->{{$v.group_pics_num}}
                                                 <!-- /react-text -->
                                                 <!-- react-text: 19895 -->张
                                                 <!-- /react-text -->
                                             </div>
+                                            {{end}}
+
                                         </section>
                                     </article>
                                    {{end}}
@@ -214,13 +166,18 @@
 </div>
 {{template "footer" .}}
 <script src="//www.vcg.com/static/js/editorial/search.faa59182.js"></script>
-<script>
+<script type="text/javascript">
+    var phrase = {{.Phrase}};
+    var phraseStr = "0"
+    if(phrase == true){
+        phraseStr = 1
+    }
     $(".topicSearch").click(function () {
-        window.location.href = "/search/?keyword={{.keyWord}}&searchType=topic"
+        window.location.href = "/search/?keyword={{.keyWord}}&searchType=topic&phrase="+phraseStr
     })
 
     $(".groupSearch").click(function () {
-         window.location.href = "/search/?keyword={{.keyWord}}&searchType=group"
+         window.location.href = "/search/?keyword={{.keyWord}}&searchType=group&phrase="+phraseStr
     })
 </script>
 <style>
