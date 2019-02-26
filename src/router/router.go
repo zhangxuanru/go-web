@@ -16,6 +16,7 @@ func InitRouter()  {
 	  http.HandleFunc("/editorial-topics/",Call(controllers.TopicList))
 	  http.HandleFunc("/topic/",Call(controllers.TopicDetail))
 	  http.HandleFunc("/search/",Call(controllers.Search))
+      http.HandleFunc("/completion/",Call(controllers.Completion))
  }
 
 func Call( hand http.HandlerFunc) http.HandlerFunc {
