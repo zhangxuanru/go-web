@@ -22,6 +22,7 @@ var (
 	groupPageCount int
 	keyWord string
 	Phrase  bool
+	PhraseStr string
 	searchType string
 	link string
 )
@@ -42,8 +43,10 @@ func Search(w http.ResponseWriter, r *http.Request) {
 	assign = make(map[string]interface{})
 	keyWord = strings.TrimSpace(r.FormValue("keyword"))
 	Phrase = false
+	PhraseStr = "0"
 	if phrase := strings.TrimSpace(r.FormValue("phrase"));phrase == "1"{
 		Phrase = true
+		PhraseStr = "1"
 	}
 	if searchType = strings.TrimSpace(r.FormValue("searchType"));searchType==""{
 		searchType = "topic"
@@ -69,6 +72,7 @@ func Search(w http.ResponseWriter, r *http.Request) {
 		pageCount,_ = strconv.Atoi(sumPage)
 	}
 	assign["Phrase"] = Phrase
+	assign["PhraseStr"] = PhraseStr
 	assign["List"] = result
     assign["total"] = total
     assign["topicTotalHit"] = topicTotalHit

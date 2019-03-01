@@ -87,14 +87,9 @@
           <div class="editor-slide pull-left" data-reactid="317">
             <div class="carousel slide" data-reactid="318">
               <ol class="carousel-indicators" data-reactid="319">
-                <li class="active" data-reactid="320"></li>
-                <li data-reactid="322"></li>
-                <li data-reactid="324"></li>
-                <li data-reactid="326"></li>
-                <li data-reactid="328"></li>
-                <li data-reactid="330"></li>
-                <li data-reactid="332"></li>
-                <li data-reactid="334"></li>
+               {{range $i,$v := .lBanner}}
+                   <li data-index="{{$i}}" class="{{if eq $i 0}}active{{end}}" data-reactid="320"></li>
+                {{end}}
               </ol>
               <div class="carousel-inner" data-reactid="336">
                   {{range $i,$v := .lBanner}}
@@ -108,14 +103,14 @@
                 </div>
                   {{end}}
               </div>
-              <a class="carousel-control left" role="button" href="#" data-reactid="377">
+              <a class="carousel-control left carousel-left" role="button" href="#" data-reactid="377">
 								<span class="glyphicon glyphicon-chevron-left" data-reactid="378">
 								</span>
 								<span class="sr-only" data-reactid="379">
 									Previous
 								</span>
               </a>
-              <a class="carousel-control right" role="button" href="#" data-reactid="380">
+              <a class="carousel-control right carousel-right" role="button" href="#" data-reactid="380">
 								<span class="glyphicon glyphicon-chevron-right" data-reactid="381">
 								</span>
 								<span class="sr-only" data-reactid="382">
@@ -232,7 +227,7 @@
 </div>
 
 {{template "footer" .}}
-
+<script src="{{.baseUrl}}/static/js/slide.js"></script>
 </body>
 </html>
 

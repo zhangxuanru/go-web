@@ -79,6 +79,14 @@ func (search *Search) GroupSearch()  (result map[int]map[string]interface{},tota
 	query = elastic.NewBoolQuery().Must(querys...)
 	include := elastic.NewFetchSourceContext(true).Include("group_id","title","group_pics_num","img_date","equalw_url","equalw_url_imgid","equalh_url","equalh_image_id")
 	searchResult,err = ES.GetEs().Search().Index("group").Type("_doc").Query(query).FetchSourceContext(include).From(search.Start).Size(search.Size).Sort("img_date",false).Do(context.Background())
+    //如果精确搜索没搜到，就按匹配搜索
+	if searchResult.TotalHits() == 0 && search.Phrase == true{
+		querys = querys[:0]
+		matchQuery = elastic.NewMatchQuery("title",search.Keyword)
+		querys = append(querys,matchQuery)
+		query = elastic.NewBoolQuery().Must(querys...)
+		searchResult,err = ES.GetEs().Search().Index("group").Type("_doc").Query(query).FetchSourceContext(include).From(search.Start).Size(search.Size).Sort("img_date",false).Do(context.Background())
+	}
 	if err != nil{
 		logger.ErrorLog.Println("GroupSearch ES ERROR:",err)
 		return
@@ -113,6 +121,14 @@ func (search *Search) GetTopicSearch() (result map[int]map[string]interface{},to
 	query = elastic.NewBoolQuery().Must(querys...)
 	include := elastic.NewFetchSourceContext(true).Include(searchFields...)
 	searchResult,err = searchService.Query(query).FetchSourceContext(include).Do(context.Background())
+	//如果精确搜索没搜到，就按匹配搜索
+	if searchResult.TotalHits() == 0 && search.Phrase == true{
+		querys = querys[:0]
+		matchQuery = elastic.NewMatchQuery("title",search.Keyword)
+		querys = append(querys,matchQuery)
+		query = elastic.NewBoolQuery().Must(querys...)
+		searchResult,err = searchService.Query(query).FetchSourceContext(include).Do(context.Background())
+	}
 	if err != nil{
 		logger.ErrorLog.Println("GetTopicSearch ES ERROR:",err)
 		return

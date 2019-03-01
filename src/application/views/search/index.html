@@ -135,7 +135,7 @@
                                   {{if le .page 1}}
                                       <a href="javascript:;" class="pull-left" style="flex: 1 1 0%; max-width: 116px; height: 40px; line-height: 40px; text-align: center; background: rgb(255, 255, 255); border: 1px solid rgb(221, 221, 221); font-size: 14px; color: rgb(117, 117, 117); margin-right: 24px;">上一页</a>
                                   {{else}}
-                                      <a href="/search/?keyword={{.keyWord}}&searchType={{.searchType}}&page={{.prevPage}}" class="pull-left" style="flex: 1 1 0%; max-width: 116px; height: 40px; line-height: 40px; text-align: center; background: rgb(255, 255, 255); border: 1px solid rgb(221, 221, 221); font-size: 14px; color: rgb(117, 117, 117); margin-right: 24px;">上一页</a>
+                                      <a href="/search/?keyword={{.keyWord}}&searchType={{.searchType}}&page={{.prevPage}}&phrase={{.PhraseStr}}" class="pull-left" style="flex: 1 1 0%; max-width: 116px; height: 40px; line-height: 40px; text-align: center; background: rgb(255, 255, 255); border: 1px solid rgb(221, 221, 221); font-size: 14px; color: rgb(117, 117, 117); margin-right: 24px;">上一页</a>
                                   {{end}}
 
                                     <div class="" style="color: rgb(67, 67, 67);">
@@ -147,7 +147,7 @@
                                     {{if ge .page .pageCount}}
                                         <a href="javascript:;" class="pull-left" style="flex: 1 1 0%; max-width: 116px; height: 40px; line-height: 40px; text-align: center; background: rgb(255, 255, 255); border: 1px solid rgb(221, 221, 221); font-size: 14px; color: rgb(117, 117, 117); margin-left: 24px;">下一页</a>
                                       {{else}}
-                                        <a href="/search/?keyword={{.keyWord}}&searchType={{.searchType}}&page={{.nextPage}}" class="pull-left" style="flex: 1 1 0%; max-width: 116px; height: 40px; line-height: 40px; text-align: center; background: rgb(255, 255, 255); border: 1px solid rgb(221, 221, 221); font-size: 14px; color: rgb(117, 117, 117); margin-left: 24px;">下一页</a>
+                                        <a href="/search/?keyword={{.keyWord}}&searchType={{.searchType}}&page={{.nextPage}}&phrase={{.PhraseStr}}" class="pull-left" style="flex: 1 1 0%; max-width: 116px; height: 40px; line-height: 40px; text-align: center; background: rgb(255, 255, 255); border: 1px solid rgb(221, 221, 221); font-size: 14px; color: rgb(117, 117, 117); margin-left: 24px;">下一页</a>
                                     {{end}}
 
                                 </div>
